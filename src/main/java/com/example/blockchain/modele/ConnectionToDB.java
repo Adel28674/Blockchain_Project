@@ -1,7 +1,7 @@
-package com.example.blockchain;
+package com.example.blockchain.modele;
 import java.sql.*;
 
-public class ConnectionToDb {
+public class ConnectionToDB {
 
     public static Connection con = null;
 
@@ -21,14 +21,14 @@ public class ConnectionToDb {
 
     public static boolean signup(String userLogin, String userMDP, String userMail, String userPhone, String userName) throws SQLException {
 
-        ConnectionToDb.connect();
+        com.example.blockchain.modele.ConnectionToDB.connect();
 
         // Requête d'insertion
         String insertionSQL = "INSERT INTO User VALUES (?, ?, ?, ?, ?)";
 
         PreparedStatement preparedStatement = null;
         try {
-            preparedStatement = ConnectionToDb.con.prepareStatement(insertionSQL);
+            preparedStatement = com.example.blockchain.modele.ConnectionToDB.con.prepareStatement(insertionSQL);
             preparedStatement.setString(1, userLogin);
             preparedStatement.setString(2, userMDP);
             preparedStatement.setString(3, userMail);
@@ -53,20 +53,20 @@ public class ConnectionToDb {
 
     public static boolean verifyCredentials(String userLogin, String userMDP) throws SQLException {
 
-        ConnectionToDb.connect();
+        com.example.blockchain.modele.ConnectionToDB.connect();
 
 
         String requete  = "SELECT * FROM User";
 
         try (
-             Statement statement  = con.createStatement();
-             ResultSet lignes= statement.executeQuery(requete)){
+                Statement statement  = con.createStatement();
+                ResultSet lignes= statement.executeQuery(requete)){
 
 
             while (lignes.next()) {
                 //System.out.println(rs.getInt("id") +  "\t" +
-                 //       rs.getString("name") + "\t" +
-                   //     rs.getDouble("capacity"));
+                //       rs.getString("name") + "\t" +
+                //     rs.getDouble("capacity"));
                 System.out.println(lignes.getString("userName") + " s'est connecté ");
                 return true;
             }

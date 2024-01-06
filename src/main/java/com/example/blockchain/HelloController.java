@@ -1,9 +1,8 @@
 package com.example.blockchain;
 
+import com.example.blockchain.modele.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class HelloController {
@@ -12,11 +11,11 @@ public class HelloController {
 
     @FXML
     protected void onHelloButtonClick() throws SQLException {
-        ConnectionToDb.connect();
+        ConnectionToDB.connect();
 
         //tester inscription
         /*
-        if (ConnectionToDb.signup("adel", "1234", "adel@gmail.com", "+33 7 89 56 98 21", "Adel")){
+        if (ConnectionToDB.signup("adel", "1234", "adel@gmail.com", "+33 7 89 56 98 21", "Adel")){
             System.out.println("Inscription valide");
         }else{
             System.out.println("Inscription Non Valide");
@@ -24,7 +23,7 @@ public class HelloController {
 
         //tester connexion
 
-        if (ConnectionToDb.verifyCredentials("adel", "1234")){
+        if (ConnectionToDB.verifyCredentials("adel", "1234")){
             System.out.println("Connecté");
         }else{
             System.out.println("Non connecté");
