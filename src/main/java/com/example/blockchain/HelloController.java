@@ -14,27 +14,21 @@ public class HelloController {
     protected void onHelloButtonClick() throws SQLException {
         ConnectionToDb.connect();
 
+        //tester inscription
+        /*
+        if (ConnectionToDb.signup("adel", "1234", "adel@gmail.com", "+33 7 89 56 98 21", "Adel")){
+            System.out.println("Inscription valide");
+        }else{
+            System.out.println("Inscription Non Valide");
+        }*/
 
-        // Requête d'insertion
-        String insertionSQL = "INSERT INTO Users VALUES (?, ?, ?)";
+        //tester connexion
 
-        PreparedStatement preparedStatement = null;
-        try {
-            preparedStatement = ConnectionToDb.con.prepareStatement(insertionSQL);
-            preparedStatement.setInt(1, 3);
-            preparedStatement.setString(2, "mihfezihzoieh");
-            preparedStatement.setString(3, "123fezezfez4");
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        if (ConnectionToDb.verifyCredentials("adel", "1234")){
+            System.out.println("Connecté");
+        }else{
+            System.out.println("Non connecté");
         }
 
-        // Exécution de la requête d'insertion
-        int lignesModifiees = preparedStatement.executeUpdate();
-
-        if (lignesModifiees > 0) {
-            System.out.println("Insertion réussie !");
-        } else {
-            System.out.println("Échec de l'insertion !");
-        }
     }
 }
