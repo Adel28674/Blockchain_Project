@@ -2,16 +2,34 @@
 
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
 <AnchorPane prefHeight="546.0" prefWidth="412.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.blockchain.InscriptionController">
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="546.0" prefWidth="489.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <Label text="Sign in" />
+            <Label prefHeight="26.0" prefWidth="140.0" text="Create a new Account" />
+            <Label text="Already registered ? Log in" />
+            <VBox prefHeight="472.0" prefWidth="252.0">
+               <children>
+                  <Label text="Username" />
+                  <TextField fx:id="username_field"/>
+                  <Label text="Full Name"/>
+                  <TextField fx:id="name_field"/>
+                  <Label text="Password" />
+                  <TextField fx:id="passwd_field"/>
+                  <Label text="Confirm Password" />
+                  <TextField fx:id="confirm_passwd_field"/>
+                  <Label text="Email" />
+                  <TextField fx:id="mail_field"/>
+                  <Label text="Phone Number " />
+                  <TextField fx:id="phone_field"/>
+               </children>
+            </VBox>
          </children>
          <padding>
-            <Insets left="150.0" right="150.0" />
+            <Insets left="80.0" right="80.0" />
          </padding>
       </VBox>
    </children>
