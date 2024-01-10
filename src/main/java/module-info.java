@@ -2,6 +2,7 @@ module com.example.blockchain {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
+    requires org.json;
 
 
     opens com.example.blockchain to javafx.fxml;

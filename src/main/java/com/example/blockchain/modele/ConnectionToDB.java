@@ -56,23 +56,25 @@ public class ConnectionToDB {
         com.example.blockchain.modele.ConnectionToDB.connect();
 
 
-        String requete  = "SELECT * FROM User";
+        String requete = "SELECT * FROM User WHERE userLogin=? AND userMDP=?";
 
-        try (
-                Statement statement  = con.createStatement();
-                ResultSet lignes= statement.executeQuery(requete)){
+        try (PreparedStatement preparedStatement = con.prepareStatement(requete)) {
+            preparedStatement.setString(1, userLogin);
+            preparedStatement.setString(2, userMDP);
 
-
-            while (lignes.next()) {
-                //System.out.println(rs.getInt("id") +  "\t" +
-                //       rs.getString("name") + "\t" +
-                //     rs.getDouble("capacity"));
-                System.out.println(lignes.getString("userName") + " s'est connecté ");
-                return true;
+            try (ResultSet lignes = preparedStatement.executeQuery()) {
+                while (lignes.next()) {
+                    //System.out.println(rs.getInt("id") +  "\t" +
+                    //       rs.getString("name") + "\t" +
+                    //     rs.getDouble("capacity"));
+                    System.out.println(lignes.getString("userName") + " s'est connecté ");
+                    return true;
+                }
             }
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
+        System.out.println(e.getMessage());
+    }
         return false;
+
     }
 }

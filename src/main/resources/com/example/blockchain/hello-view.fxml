@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.blockchain.HelloController">
+<VBox alignment="CENTER" prefHeight="274.0" prefWidth="358.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.blockchain.HelloController">
   <padding>
-    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
   </padding>
-
-  <Label fx:id="welcomeText"/>
-  <Button text="Hello!" onAction="#onHelloButtonClick"/>
+   <Label text="LOGIN" />
+   <Label text="Label" />
+   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+      <children>
+         <Label text="Nom d'utilisateur" />
+         <TextField fx:id="login_field" />
+         <Label text="Mot de passe" />
+          <PasswordField fx:id="password_field" />
+         <Button fx:id="btn_login" mnemonicParsing="false" onAction="#onHelloButtonClick" prefHeight="26.0" prefWidth="110.0" text="Login" textAlignment="CENTER" />
+      
+        <Label fx:id="Error_message" text="Nom d'utilisasteur ou mot de passe incorrecte" textFill="#ff2626" visible="false" />
+         <Label onMouseClicked="#noAccountonClick" text="you don't have an accont ? Sign up" />
+      </children>
+   </VBox>
 </VBox>
