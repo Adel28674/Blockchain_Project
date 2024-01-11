@@ -1,27 +1,13 @@
 package com.example.blockchain.modele;
 
-public class Stock {
-
-    private String stockName;
+public class Stock extends Value{
 
     private String company;
-    private long price;
 
-    private String symbol;
 
-    public Stock(String stockName, String company, long price, String symbol) {
-        this.stockName = stockName;
+    public Stock(String currencyName, long price, String symbol, float quantity, String company) {
+        super(currencyName, price, symbol, quantity);
         this.company = company;
-        this.price = price;
-        this.symbol = symbol;
-    }
-
-    public String getStockName() {
-        return stockName;
-    }
-
-    public void setStockName(String stockName) {
-        this.stockName = stockName;
     }
 
     public String getCompany() {
@@ -30,21 +16,5 @@ public class Stock {
 
     public void setCompany(String company) {
         this.company = company;
-    }
-
-    public long getPrice() {
-        return price;
-    }
-
-    public void setPrice(long price) {
-        this.price = price;
-    }
-
-    public String getSymbol() {
-        return symbol;
-    }
-
-    public void setSymbol(String symbol) {
-        this.symbol = symbol;
     }
 }
