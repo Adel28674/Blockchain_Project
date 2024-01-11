@@ -152,54 +152,42 @@ public class InscriptionController implements Initializable {
         });
 
 
-        mail_field.focusedProperty().addListener(new ChangeListener<Boolean>()
-        {
-            @Override
-            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
-            {
-                try {
-                    if (mail_field.getText().matches("")){
-                        //pass
-                        //si le champ est vide on ne fait rien
-                    } else if (isMailField_Valid()) {
+        mail_field.setOnKeyTyped(event->{
+            try {
+                if (mail_field.getText().matches("")){
+                    //pass
+                    //si le champ est vide on ne fait rien
+                } else if (isMailField_Valid()) {
 
 
-                        mail_field.setStyle("-fx-text-box-border: #0ac40d; -fx-focus-color: #0ac40d;");
-                        mailErrorMessage.setVisible(false);
-                    }else{
-                        mail_field.setStyle("-fx-text-box-border: #cf2317; -fx-focus-color: #cf2317;");
-                        mailErrorMessage.setVisible(true);
-                    }
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
+                    mail_field.setStyle("-fx-text-box-border: #0ac40d; -fx-focus-color: #0ac40d;");
+                    mailErrorMessage.setVisible(false);
+                }else{
+                    mail_field.setStyle("-fx-text-box-border: #cf2317; -fx-focus-color: #cf2317;");
+                    mailErrorMessage.setVisible(true);
                 }
-
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
-        });
+                });
 
-        phone_field.focusedProperty().addListener(new ChangeListener<Boolean>()
-        {
-            @Override
-            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
-            {
-                try {
-                    if (phone_field.getText().matches("")) {
-                        //pass
-                        //si le champ est vide on ne fait rien
-                    } else if (isPhoneField_Valid()) {
-                        phone_field.setStyle("-fx-text-box-border: #0ac40d; -fx-focus-color: #0ac40d;");
-                        phoneErrorMessage.setVisible(false);
-                    } else {
-                        phone_field.setStyle("-fx-text-box-border: #cf2317; -fx-focus-color: #cf2317;");
-                        phoneErrorMessage.setVisible(true);
-                    }
+
+        phone_field.setOnKeyTyped(event->{
+            try {
+                if (phone_field.getText().matches("")) {
+                    //pass
+                    //si le champ est vide on ne fait rien
+                } else if (isPhoneField_Valid()) {
+                    phone_field.setStyle("-fx-text-box-border: #0ac40d; -fx-focus-color: #0ac40d;");
+                    phoneErrorMessage.setVisible(false);
+                } else {
+                    phone_field.setStyle("-fx-text-box-border: #cf2317; -fx-focus-color: #cf2317;");
+                    phoneErrorMessage.setVisible(true);
+                }
 
             }catch (IOException e) {
                 throw new RuntimeException(e);
             }
-
-
-        }
         });
 
     }
@@ -247,9 +235,10 @@ public class InscriptionController implements Initializable {
                 .matches();
     }
 
-    public void btn_RegistrationClicked(ActionEvent actionEvent) throws SQLException, IOException {
+    public void btn_RegistrationClicked(ActionEvent actionEvent) throws SQLException, IOException, InterruptedException {
 
-        if (isUsernameField_Valid() && isNameField_Valid() && isPasswdField_Valid() && isMailField_Valid() && isPhoneField_Valid()){
+        if (isUsernameField_Valid() && isNameField_Valid() && isPasswdField_Valid() && isMailField_Valid() && isPhoneField_Valid()
+        && ConnectionToDB.signup(username_field.getText(), passwd_field.getText(), mail_field.getText(), phone_field.getText(), name_field.getText())){
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Vous avez été inscrit avec succès", ButtonType.OK);
             alert.showAndWait();
             Stage stage = new Stage() ;
