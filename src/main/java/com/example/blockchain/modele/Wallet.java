@@ -1,4 +1,4 @@
-package com.example.blockchain;
+package com.example.blockchain.modele;
 
 import java.util.UUID;
 
@@ -7,6 +7,7 @@ public class Wallet {
     private UserInfo owner;
     private UUID token = UUID.randomUUID();
     private int isepCoins;//changer par des titres
+
 
     public Wallet(UserInfo parOwner){
         this.owner = parOwner;

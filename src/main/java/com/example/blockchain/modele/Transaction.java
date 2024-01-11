@@ -1,4 +1,4 @@
-package com.example.blockchain;
+package com.example.blockchain.modele;
 
 
 public class Transaction {

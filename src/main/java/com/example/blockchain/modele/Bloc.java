@@ -1,8 +1,6 @@
-package com.example.blockchain;
+package com.example.blockchain.modele;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.Queue;
 
 public class Bloc {
     public final LinkedList<Transaction> transactionsQueue;

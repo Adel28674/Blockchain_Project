@@ -1,4 +1,6 @@
-package com.example.blockchain;
+package com.example.blockchain.modele;
+
+import com.example.blockchain.modele.Wallet;
 
 import java.util.List;
 
