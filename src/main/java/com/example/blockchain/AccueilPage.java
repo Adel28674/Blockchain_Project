@@ -30,7 +30,7 @@ public class AccueilPage {
 
     public void onBtnClickChartInitializer() throws IOException {
         //URL url = new URL("https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT");
-        URL url = new URL("https://api.binance.com/api/v3/klines?symbol=BTCUSDT&interval=3d");
+            URL url = new URL("https://api.binance.com/api/v3/klines?symbol=BTCUSDT&interval=3d");
 
         BufferedReader in = null;
 

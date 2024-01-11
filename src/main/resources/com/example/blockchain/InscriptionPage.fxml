@@ -25,9 +25,9 @@
                         <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
                      </VBox.margin></Label>
                   <Label text="Password" />
-                  <TextField fx:id="passwd_field" style="-fx-border-width: 2px;"/>
+                  <PasswordField fx:id="passwd_field" style="-fx-border-width: 2px;"/>
                   <Label text="Confirm Password" />
-                  <TextField fx:id="confirm_passwd_field" style="-fx-border-width: 2px;"/>
+                  <PasswordField fx:id="confirm_passwd_field" style="-fx-border-width: 2px;"/>
                   <Label fx:id="passwdErrorMessage" text="Les deux mots de passe ne correspondent pas" textFill="#cf2317" visible="false">
                      <VBox.margin>
                         <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />

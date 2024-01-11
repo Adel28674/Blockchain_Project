@@ -1,9 +1,8 @@
 package com.example.blockchain.modele;
 
-import java.util.HashMap;
 import java.util.Map;
 
-public class CryptoSymbol {
+public class Symbol {
 
     public static Map<String, String> cryptoHM = Map.of(
         "BITCOIN", "BTCUSDT",
@@ -12,4 +11,6 @@ public class CryptoSymbol {
         "NEO", "NOEUSDT",
         "BNB", "BNBUSDT"
     );
+
+
 }
