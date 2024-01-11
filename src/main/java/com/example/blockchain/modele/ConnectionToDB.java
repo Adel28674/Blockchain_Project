@@ -77,4 +77,26 @@ public class ConnectionToDB {
         return false;
 
     }
+
+    public static boolean exists(String userLogin) throws SQLException {
+
+        com.example.blockchain.modele.ConnectionToDB.connect();
+
+        String requete = "SELECT * FROM User WHERE userLogin=? ";
+
+        try (PreparedStatement preparedStatement = con.prepareStatement(requete)) {
+            preparedStatement.setString(1, userLogin);
+
+
+            try (ResultSet lignes = preparedStatement.executeQuery()) {
+                if (lignes.next()) {
+                    return true;
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return false;
+
+    }
 }

@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
 <AnchorPane prefHeight="546.0" prefWidth="412.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.blockchain.InscriptionController">
@@ -14,17 +13,39 @@
             <VBox prefHeight="472.0" prefWidth="252.0">
                <children>
                   <Label text="Username" />
-                  <TextField fx:id="username_field"/>
-                  <Label text="Full Name"/>
-                  <TextField fx:id="name_field"/>
+                  <TextField fx:id="username_field" style="-fx-border-width: 2px;" />
+                  <Label fx:id="usernameErrorMessage" text="Ce nom existe déjà" textFill="#cf2317" visible="false">
+                     <VBox.margin>
+                        <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+                     </VBox.margin></Label>
+                  <Label text="Full Name" />
+                  <TextField fx:id="name_field" style="-fx-border-width: 2px;"/>
+                  <Label fx:id="nameErrorMessage" text="Ce nom est vide" textFill="#cf2317" visible="false">
+                     <VBox.margin>
+                        <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+                     </VBox.margin></Label>
                   <Label text="Password" />
-                  <TextField fx:id="passwd_field"/>
+                  <TextField fx:id="passwd_field" style="-fx-border-width: 2px;"/>
                   <Label text="Confirm Password" />
-                  <TextField fx:id="confirm_passwd_field"/>
+                  <TextField fx:id="confirm_passwd_field" style="-fx-border-width: 2px;"/>
+                  <Label fx:id="passwdErrorMessage" text="Les deux mots de passe ne correspondent pas" textFill="#cf2317" visible="false">
+                     <VBox.margin>
+                        <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+                     </VBox.margin></Label>
                   <Label text="Email" />
-                  <TextField fx:id="mail_field"/>
+                  <TextField fx:id="mail_field" style="-fx-border-width: 2px;"/>
+                  <Label fx:id="mailErrorMessage" text="Le mail doit correspondre à la forme soufiane@example.com" textFill="#cf2317" visible="false">
+                     <VBox.margin>
+                        <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+                     </VBox.margin></Label>
                   <Label text="Phone Number " />
-                  <TextField fx:id="phone_field"/>
+                  <TextField fx:id="phone_field" style="-fx-border-width: 2px;"/>
+                  <Label fx:id="phoneErrorMessage" text="Il ne faut mettre que 10 numéros" textFill="#cf2317" visible="false">
+                     <VBox.margin>
+                        <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+                     </VBox.margin></Label>
+
+                  <Button fx:id="registration" onAction="#btn_RegistrationClicked" text="S'inscrire" />
                </children>
             </VBox>
          </children>
