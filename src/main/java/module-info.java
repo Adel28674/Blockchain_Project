@@ -5,6 +5,8 @@ module com.example.blockchain {
     requires org.json;
     requires YahooFinanceAPI;
 
+
+
     opens com.example.blockchain to javafx.fxml;
     exports com.example.blockchain;
     exports com.example.blockchain.modele;

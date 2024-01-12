@@ -62,7 +62,31 @@
     </dependency>
 
 
-  </dependencies>
+      <dependency>
+        <groupId>com.squareup.retrofit2</groupId>
+        <artifactId>retrofit</artifactId>
+        <version>2.9.0</version>
+      </dependency>
+
+
+      <dependency>
+        <groupId>com.squareup.retrofit2</groupId>
+        <artifactId>converter-gson</artifactId>
+        <version>2.9.0</version>
+      </dependency>
+
+    </dependencies>
+
+
+
+
+  <repositories>
+    <repository>
+      <id>binance-api</id>
+      <url>https://github.com/binance-exchange/binance-java-api.git</url>
+    </repository>
+  </repositories>
+
 
   <build>
     <plugins>
