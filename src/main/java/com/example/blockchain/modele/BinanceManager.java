@@ -22,7 +22,7 @@ public class BinanceManager {
     private static ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 
     public static JSONObject getOneCryptoValue(String symbol) throws IOException {
-        String path1 = "ticker?symbol="+ Symbol.cryptoHM.get(symbol);
+        String path1 = "ticker/price?symbol="+ Symbol.cryptoHM.get(symbol);
         JSONObject json  = new JSONObject();
         URL url = new URL(path+path1);
 
@@ -133,7 +133,7 @@ public class BinanceManager {
             @Override
             public void run() {
                 try {
-                    Double bitcoinPrice = Double.parseDouble(getOneCryptoValue(symbol).getString("lastPrice"));
+                    Double bitcoinPrice = Double.parseDouble(getOneCryptoValue(symbol).getString("price"));
 
                     System.out.println("Prix actuel du Bitcoin : " + bitcoinPrice);
                 } catch (Exception e) {

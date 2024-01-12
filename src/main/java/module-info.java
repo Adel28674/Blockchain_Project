@@ -3,7 +3,7 @@ module com.example.blockchain {
     requires javafx.fxml;
     requires java.sql;
     requires org.json;
-
+    requires YahooFinanceAPI;
 
     opens com.example.blockchain to javafx.fxml;
     exports com.example.blockchain;

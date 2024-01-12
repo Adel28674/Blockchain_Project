@@ -89,7 +89,7 @@ public class AccueilPage {
             Date date1 = new Date(timestamp1);
 
             series.getData().add(new XYChart.Data(date.toString(), candle.getDouble(2)));
-            series.getData().add(new XYChart.Data(date1.toString(), candle1.getDouble(2)));
+            series.getData().add(new XYChart.Data("", candle1.getDouble(2)));
 
             linechart.getData().add(series);
         }
