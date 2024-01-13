@@ -1,44 +1,34 @@
 package com.example.blockchain.modele;
 
-import com.crazzyghost.alphavantage.AlphaVantage;
-import com.crazzyghost.alphavantage.AlphaVantageException;
-import com.crazzyghost.alphavantage.Config;
-import com.crazzyghost.alphavantage.timeseries.TimeSeries;
-import com.crazzyghost.alphavantage.timeseries.response.TimeSeriesResponse;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.HttpClients;
 
-
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.ObjectInputFilter;
 import java.math.BigDecimal;
-
-import static com.crazzyghost.alphavantage.AlphaVantage.*;
 
 public class StockManager {
     public static void main(String[] args) throws IOException {
 
-        // Remplacez 'YOUR_API_KEY' par votre propre clé API Alpha Vantage
-        String apiKey = "RUCNTNS1KKTTBZUV";
-
-        // Configurez Alpha Vantage avec votre clé API
-        Config config = Config.builder().key(apiKey).build();
-        api().init(config);
+        HttpClient httpClient = HttpClients.createDefault();
+        HttpGet request = new HttpGet("https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=MSFT&interval=5min&apikey=RUCNTNS1KKTTBZUV");
 
         try {
-            // Récupérez les données de série temporelle pour les actions de Google
-
-
-            TimeSeriesResponse timeSeriesResponse = AlphaVantage.api()
-                    .timeSeries()
-                    .intraday()
-                    .fetchSync();
-
-            System.out.println(timeSeriesResponse.toString());
-
-
-        } catch (AlphaVantageException e) {
+            HttpResponse response = httpClient.execute(request);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+            }
+        } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
 
 }

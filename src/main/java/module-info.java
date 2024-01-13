@@ -3,7 +3,8 @@ module com.example.blockchain {
     requires javafx.fxml;
     requires java.sql;
     requires org.json;
-    requires alphavantage.java;
+    requires org.apache.httpcomponents.httpclient;
+    requires org.apache.httpcomponents.httpcore;
 
     opens com.example.blockchain to javafx.fxml;
     exports com.example.blockchain;
