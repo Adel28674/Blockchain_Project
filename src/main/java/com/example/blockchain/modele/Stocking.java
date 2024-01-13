@@ -1,13 +1,17 @@
 package com.example.blockchain.modele;
 
-public class Stock extends Value{
+import yahoofinance.Stock;
+
+public class Stocking extends Value{
 
     private String company;
 
+    private Stock stock ;
 
-    public Stock(String currencyName, long price, String symbol, float quantity, String company) {
+    public Stocking(String currencyName, long price, String symbol, float quantity, String company) {
         super(currencyName, price, symbol, quantity);
         this.company = company;
+        stock = new Stock(symbol);
     }
 
     public String getCompany() {

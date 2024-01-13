@@ -8,6 +8,7 @@ public class Value {
     private String symbol;
     private float quantity;
 
+
     public Value(String currencyName, long price, String symbol, float quantity) {
         this.currencyName = currencyName;
         this.price = price;
