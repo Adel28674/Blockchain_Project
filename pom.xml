@@ -56,11 +56,21 @@
       <version>1.5.4</version>
     </dependency>
 
-
-
-
+    <dependency>
+      <groupId>com.github.crazzyghost</groupId>
+      <artifactId>alphavantage-java</artifactId>
+      <version>1.6.2</version>
+    </dependency>
 
   </dependencies>
+
+  <repositories>
+    <repository>
+      <id>repository-id</id>
+      <url>https://jitpack.io</url>
+    </repository>
+  </repositories>
+
 
   <build>
     <plugins>
