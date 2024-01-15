@@ -83,16 +83,21 @@ public class ChartCalculationCrypto extends ApplicationFrame {
         return chart;
     }
 
+    public void afficher(){
+        this.pack();
+        this.setVisible(true);
+    }
+
 
     public static void main(String[] args) {
         ChartCalculationCrypto chart = null;
         try {
-            chart = new ChartCalculationCrypto("Candle Stick Chart","BITCOIN");
+            chart = new ChartCalculationCrypto("Candle Stick Chart","ETHERUM");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        chart.pack();
-        chart.setVisible(true);
+
+        chart.afficher();
 
     }
 }

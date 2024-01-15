@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
 import static com.example.blockchain.AccueilPage.json;
 
@@ -49,8 +50,9 @@ public class HelloController {
 
         //user = adel ; mdp = 1234
         if (ConnectionToDB.verifyCredentials(login_field.getText(), password_field.getText())){
+            List<String> info = ConnectionToDB.getUserInfo(login_field.getText());
+            CurrentUser.userConnected = new UserInfo(info.get(0),info.get(1),info.get(2),info.get(3),info.get(4));
             System.out.println("Connecté");
-
             Stage stage = new Stage() ;
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("accueilPage.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 800, 600);

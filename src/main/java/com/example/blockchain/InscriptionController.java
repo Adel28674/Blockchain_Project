@@ -1,6 +1,8 @@
 package com.example.blockchain;
 
 import com.example.blockchain.modele.ConnectionToDB;
+import com.example.blockchain.modele.CurrentUser;
+import com.example.blockchain.modele.UserInfo;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -238,6 +240,7 @@ public class InscriptionController implements Initializable {
         if (isUsernameField_Valid() && isNameField_Valid() && isPasswdField_Valid() && isMailField_Valid() && isPhoneField_Valid()
         && ConnectionToDB.signup(username_field.getText(), passwd_field.getText(), mail_field.getText(), phone_field.getText(), name_field.getText())){
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Vous avez été inscrit avec succès", ButtonType.OK);
+            CurrentUser.userConnected = new UserInfo(username_field.getText(), passwd_field.getText(), mail_field.getText(), phone_field.getText(), name_field.getText());
             alert.showAndWait();
             Stage stage = new Stage() ;
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("accueilPage.fxml"));

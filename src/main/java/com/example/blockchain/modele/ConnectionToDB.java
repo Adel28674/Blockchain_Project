@@ -1,5 +1,7 @@
 package com.example.blockchain.modele;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ConnectionToDB {
 
@@ -96,6 +98,35 @@ public class ConnectionToDB {
             System.out.println(e.getMessage());
         }
         return false;
+
+    }
+
+    public static List<String> getUserInfo(String userLogin) throws SQLException {
+
+        com.example.blockchain.modele.ConnectionToDB.connect();
+
+        String requete = "SELECT * FROM User WHERE userLogin=? ";
+
+        try (PreparedStatement preparedStatement = con.prepareStatement(requete)) {
+            preparedStatement.setString(1, userLogin);
+
+            List<String> info = new ArrayList<>();
+
+            try (ResultSet lignes = preparedStatement.executeQuery()) {
+                while (lignes.next()) {
+                    info.add(lignes.getString("userLogin"));
+                    info.add(lignes.getString("userMDP"));
+                    info.add(lignes.getString("userMail"));
+                    info.add(lignes.getString("userPhone"));
+                    info.add(lignes.getString("userName"));
+                }
+
+                return info;
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
 
     }
 }
