@@ -4,6 +4,10 @@ package com.example.blockchain.modele;
 public class Transaction {
     protected final Wallet originWallet;
     protected final Wallet destinationWallet;
+
+    protected long timestamp;
+
+    protected Value value;
     protected int isepCoins;
     protected Boolean payed;
 

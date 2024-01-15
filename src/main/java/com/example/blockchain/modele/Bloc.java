@@ -1,12 +1,27 @@
 package com.example.blockchain.modele;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 
 public class Bloc {
-    public final LinkedList<Transaction> transactionsQueue;
+    public LinkedList<Transaction> transactionsQueue;
+
+    private int previousHash;
+    private int blocHash;
 
     public Bloc(){
         this.transactionsQueue = new LinkedList<Transaction>();
+        Object[] contens = {Arrays.hashCode(transactionsQueue.toArray()), previousHash};
+
+        blocHash = Arrays.hashCode(contens);
+    }
+
+    public Bloc(Transaction[] transactions, int parPreviousHash){
+        this.transactionsQueue = new LinkedList<Transaction>();
+        this.previousHash = parPreviousHash;
+        Object[] contens = {Arrays.hashCode(transactionsQueue.toArray()), previousHash};
+
+        blocHash = Arrays.hashCode(contens);
     }
 
     public Bloc add(Transaction par){
