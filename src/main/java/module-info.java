@@ -5,6 +5,9 @@ module com.example.blockchain {
     requires org.json;
     requires org.apache.httpcomponents.httpclient;
     requires org.apache.httpcomponents.httpcore;
+    requires org.jfree.jfreechart;
+    requires java.desktop;
+
 
     opens com.example.blockchain to javafx.fxml;
     exports com.example.blockchain;

@@ -11,6 +11,13 @@ public class Symbol {
         "NEO", "NOEUSDT",
         "BNB", "BNBUSDT"
     );
+public static Map<String, String> stockHM = Map.of(
+        "APPLE", "AAPL",
+        "GOOGLE", "GOOG",
+        "MICROSOFT", "MSFT",
+        "FACEBOOK", "META",
+        "TESLA", "TSLA"
+    );
 
 
 }
