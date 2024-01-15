@@ -167,8 +167,8 @@ public class BinanceManager {
     }
 
     public static void main(String[] args) throws IOException {
-        startGetCryptoRealTime("BITCOIN");
-        stopAtCertainTime(5000);
+        //startGetCryptoRealTime("BITCOIN");
+        //stopAtCertainTime(5000);
 
     }
 
