@@ -1,50 +1,44 @@
 package com.example.blockchain.modele;
 
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
 
 public class Bloc {
-    public LinkedList<Transaction> transactionsQueue;
+    public ArrayList<Transaction> transactionArrayList;
 
     private int previousHash;
     private int blocHash;
 
-    public Bloc(){
-        this.transactionsQueue = new LinkedList<Transaction>();
-        Object[] contens = {Arrays.hashCode(transactionsQueue.toArray()), previousHash};
-
-        blocHash = Arrays.hashCode(contens);
-    }
-
-    public Bloc(Transaction[] transactions, int parPreviousHash){
-        this.transactionsQueue = new LinkedList<Transaction>();
+    public Bloc(ArrayList<Transaction> transactions, int parPreviousHash){
+        this.transactionArrayList = transactions;
         this.previousHash = parPreviousHash;
-        Object[] contens = {Arrays.hashCode(transactionsQueue.toArray()), previousHash};
+        Object[] contens = {Arrays.hashCode(transactionArrayList.toArray()), previousHash};
 
         blocHash = Arrays.hashCode(contens);
     }
 
     public Bloc add(Transaction par){
-        if (transactionsQueue.size()<10){
-            transactionsQueue.add(par);
+        if (transactionArrayList.size()<10){
+            transactionArrayList.add(par);
             System.out.println("AJOUT d'une nouvelle TRANSAC");
             return this;
-        } else if (transactionsQueue.size()==10) {
+        } else if (transactionArrayList.size()==10) {
             System.out.println("AJOUT d'un nouveau BLOC");
             processTransaction();
-            Bloc b = new Bloc();
-            b.add(par);
+            ArrayList<Transaction> ar = new ArrayList<>();
+            ar.add(par);
+            Bloc b = new Bloc(ar, this.getBlocHash());
             return b;
         }
 
-        return new Bloc();
+        return new Bloc(new ArrayList<>(), this.getBlocHash());
     }
 
     @Override
     public String toString() {
         String aff = "";
-        for (int i = 0; i < transactionsQueue.size(); i++) {
-            aff += transactionsQueue.get(i).toString() + "\n";
+        for (int i = 0; i < transactionArrayList.size(); i++) {
+            aff += transactionArrayList.get(i).toString() + "\n";
         }
         return aff;
     }
@@ -52,12 +46,33 @@ public class Bloc {
     public void processTransaction(){
         int i = 0;
         System.out.println("PROCESSING ################################################");
-        while(i < transactionsQueue.size()){
-            transactionsQueue.get(i).pay();
+        while(i < transactionArrayList.size()){
+            transactionArrayList.get(i).pay();
             i++;
         }
     }
 
+    public ArrayList<Transaction> getTransactionArrayList() {
+        return transactionArrayList;
+    }
 
+    public void setTransactionArrayList(ArrayList<Transaction> transactionArrayList) {
+        this.transactionArrayList = transactionArrayList;
+    }
 
+    public int getPreviousHash() {
+        return previousHash;
+    }
+
+    public void setPreviousHash(int previousHash) {
+        this.previousHash = previousHash;
+    }
+
+    public int getBlocHash() {
+        return blocHash;
+    }
+
+    public void setBlocHash(int blocHash) {
+        this.blocHash = blocHash;
+    }
 }
