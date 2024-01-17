@@ -1,5 +1,6 @@
 package com.example.blockchain.modele;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -47,7 +48,11 @@ public class Bloc {
         int i = 0;
         System.out.println("PROCESSING ################################################");
         while(i < transactionArrayList.size()){
-            transactionArrayList.get(i).pay();
+            try {
+                transactionArrayList.get(i).payWithCapital();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
             i++;
         }
     }

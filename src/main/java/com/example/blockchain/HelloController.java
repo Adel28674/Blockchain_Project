@@ -20,6 +20,7 @@ import java.util.Date;
 import java.util.List;
 
 import static com.example.blockchain.AccueilPage.json;
+import static com.example.blockchain.modele.ConnectionToDB.getWalletsFromDatabase;
 
 public class HelloController {
     @FXML
@@ -51,14 +52,22 @@ public class HelloController {
         //user = adel ; mdp = 1234
         if (ConnectionToDB.verifyCredentials(login_field.getText(), password_field.getText())){
             List<String> info = ConnectionToDB.getUserInfo(login_field.getText());
-            CurrentUser.userConnected = new UserInfo(info.get(0),info.get(1),info.get(2),info.get(3),info.get(4));
+            CurrentUser.userConnected = new Investor(new UserInfo(info.get(0),info.get(1),info.get(2),info.get(3),info.get(4)));
+            try {
+                System.out.println(getWalletsFromDatabase(CurrentUser.userConnected).toString());
+                CurrentUser.userConnected.setWallets(getWalletsFromDatabase(CurrentUser.userConnected));
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
             System.out.println("Connecté");
             Stage stage = new Stage() ;
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("accueilPage.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+            AccueilPage accueilPage = fxmlLoader.getController();
             stage.setTitle("Hello!");
             stage.setScene(scene);
             stage.show();
+            accueilPage.setData();
 
             Stage st = (Stage) btn_login.getScene().getWindow();
             st.close();

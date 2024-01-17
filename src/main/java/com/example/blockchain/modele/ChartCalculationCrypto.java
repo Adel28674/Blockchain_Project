@@ -83,6 +83,8 @@ public class ChartCalculationCrypto extends ApplicationFrame {
         return chart;
     }
 
+
+
     public void afficher(){
         this.pack();
         this.setVisible(true);

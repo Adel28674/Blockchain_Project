@@ -5,8 +5,6 @@ import com.example.blockchain.modele.Wallet;
 import java.util.List;
 
 public class UserInfo {
-    private List<Wallet> walletList;
-
     private String userLogin;
 
     private String userMDP;
@@ -24,27 +22,10 @@ public class UserInfo {
         this.userName = userName;
     }
 
-    public UserInfo(String parLogin, String parPasswd, String parMail){
-        this.userLogin = parLogin;
-        this.userMDP = parPasswd;
-        this.mail = parMail;
+    public UserInfo(){
+
     }
 
-    public List<Wallet> getWalletList() {
-        return walletList;
-    }
-
-    public void addWalletList(Wallet wallet) {
-        this.getWalletList().add(wallet);
-    }
-
-    public void deleteWalletList(Wallet wallet) {
-        if (this.getWalletList().contains(wallet)){
-            this.getWalletList().remove(wallet);
-        }else{
-            System.out.println("Ce portefeuille n'existe pas");
-        }
-    }
 
     public String getUserLogin() {
         return userLogin;
@@ -69,6 +50,24 @@ public class UserInfo {
     public void setMail(String mail) {
         this.mail = mail;
     }
+
+    public String getUserPhone() {
+        return userPhone;
+    }
+
+    public void setUserPhone(String userPhone) {
+        this.userPhone = userPhone;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+
 
     @Override
     public String toString() {

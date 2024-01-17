@@ -1,5 +1,8 @@
 package com.example.blockchain;
 
+import com.example.blockchain.modele.ConnectionToDB;
+import com.example.blockchain.modele.CurrentUser;
+import com.example.blockchain.modele.Investor;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -17,6 +20,25 @@ public class HelloApplication extends Application {
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();
+    }
+
+
+    @Override
+    public void stop() throws Exception {
+
+        Investor investor = CurrentUser.userConnected;
+        if (investor!=null){
+            try {
+                boolean success = ConnectionToDB.StockWalletInDatabase(investor);
+                if (success) {
+                    System.out.println("Les données ont été sauvegardées avec succès.");
+                } else {
+                    System.out.println("Échec de la sauvegarde des données.");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public static void main(String[] args) {

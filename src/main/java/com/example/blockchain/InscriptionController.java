@@ -2,6 +2,7 @@ package com.example.blockchain;
 
 import com.example.blockchain.modele.ConnectionToDB;
 import com.example.blockchain.modele.CurrentUser;
+import com.example.blockchain.modele.Investor;
 import com.example.blockchain.modele.UserInfo;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -11,7 +12,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.input.InputMethodEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -197,7 +197,7 @@ public class InscriptionController implements Initializable {
     private boolean isUsernameField_Valid() throws IOException, SQLException {
         String input = username_field.getText();
 
-        if (input==null || input.matches("") || ConnectionToDB.exists(input)){
+        if (input==null || input.matches("") || ConnectionToDB.existsUser(input)){
             return false;
         }
         return true;
@@ -240,14 +240,16 @@ public class InscriptionController implements Initializable {
         if (isUsernameField_Valid() && isNameField_Valid() && isPasswdField_Valid() && isMailField_Valid() && isPhoneField_Valid()
         && ConnectionToDB.signup(username_field.getText(), passwd_field.getText(), mail_field.getText(), phone_field.getText(), name_field.getText())){
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Vous avez été inscrit avec succès", ButtonType.OK);
-            CurrentUser.userConnected = new UserInfo(username_field.getText(), passwd_field.getText(), mail_field.getText(), phone_field.getText(), name_field.getText());
+            CurrentUser.userConnected = new Investor(new UserInfo(username_field.getText(), passwd_field.getText(), mail_field.getText(), phone_field.getText(), name_field.getText()));
             alert.showAndWait();
             Stage stage = new Stage() ;
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("accueilPage.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+            AccueilPage accueilPage  = fxmlLoader.getController();
             stage.setTitle("Hello!");
             stage.setScene(scene);
             stage.show();
+            accueilPage.setData();
 
             Stage st = (Stage) username_field.getScene().getWindow();
             st.close();

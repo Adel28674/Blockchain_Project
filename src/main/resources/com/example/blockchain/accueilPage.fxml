@@ -1,26 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.collections.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.chart.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.blockchain.AccueilPage">
-    <VBox alignment="CENTER" prefHeight="408.0" prefWidth="600.0" spacing="20.0">
-        <padding>
-            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-        </padding>
-      <children>
-         <Button fx:id="btn" mnemonicParsing="false" onAction="#onBtnClickChartInitializer" text="Button" />
-         <LineChart fx:id="chart" prefHeight="326.0" prefWidth="560.0">
-           <xAxis>
-             <CategoryAxis side="BOTTOM" />
-           </xAxis>
-           <yAxis>
-             <NumberAxis side="LEFT" />
-           </yAxis>
-         </LineChart>
-      </children>
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.blockchain.AccueilPage">
+    <BorderPane prefHeight="616.0" prefWidth="1000.0" xmlns:fx="http://javafx.com/fxml/1">
+        <left>
+            <VBox spacing="10">
+                <Button text="Page 1" />
+                <Button text="Page 2" />
+            <Button mnemonicParsing="false" text="Button" />
+            <Button mnemonicParsing="false" text="Button" />
+                <!-- Ajouter d'autres boutons si nécessaire -->
+            </VBox>
+        </left>
+        <center>
+            <HBox prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                <children>
+                    <VBox alignment="CENTER" prefHeight="400.0" prefWidth="212.0" spacing="20.0">
+                        <Label fx:id="WalletValue">AAAAA</Label>
+                        <Label>AAAAA</Label>
+                        <Label>AAAAA</Label>
+                        <Label text="AAAAA">AAAAA</Label>
+                        <Label>AAAAA</Label>
+                        <Label>AAAAA</Label>
+                        <Label>AAAAA</Label>
+                        <Label>AAAAA</Label>
+                    </VBox>
+                    <VBox alignment="CENTER" prefHeight="408.0" prefWidth="600.0" spacing="20.0">
+                        <padding>
+                            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                        </padding>
+                        <children>
+                     <VBox prefHeight="527.0" prefWidth="560.0">
+                        <children>
+                              <Button fx:id="btn" mnemonicParsing="false" onAction="#onBtnClickChartInitializer" text="Button" />
+                           <ComboBox id="combobox" fx:id="comboBoxWallets" prefWidth="150.0">
+                               <items>
+                                   <FXCollections fx:factory="observableArrayList">
+                                       <String fx:value="Item 1" />
+                                       <String fx:value="Item 2" />
+                                       <String fx:value="Item 3" />
+                                   </FXCollections>
+                               </items>
+                           </ComboBox>
+                                <StackPane fx:id="chartContainer">
+                              <children>
+                                 <LineChart fx:id="lineChartWallet">
+                                   <xAxis>
+                                     <CategoryAxis side="BOTTOM" />
+                                   </xAxis>
+                                   <yAxis>
+                                     <NumberAxis side="LEFT" />
+                                   </yAxis>
+                                 </LineChart>
+                              </children></StackPane>
+                                  
+                        </children>
+                     </VBox>
 
-    </VBox>
+                            <HBox alignment="CENTER" prefHeight="408.0" prefWidth="600.0" spacing="20.0">
+                                <VBox alignment="CENTER" prefHeight="408.0" prefWidth="600.0" spacing="20.0">
+                           <children>
+                              <PieChart />
+                           </children></VBox>
+
+                                <VBox alignment="CENTER" prefHeight="408.0" prefWidth="600.0" spacing="20.0">
+                           <children>
+                              <PieChart />
+                           </children></VBox>
+
+                            </HBox>
+                        </children>
+
+                    </VBox>
+                </children>
+            </HBox>
+        </center>
+
+    </BorderPane>
+
 </AnchorPane>

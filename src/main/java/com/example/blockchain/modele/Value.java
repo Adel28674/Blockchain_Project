@@ -1,34 +1,41 @@
 package com.example.blockchain.modele;
 
-public class Value {
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.util.HashMap;
 
-    private String currencyName;
-    private long price;
+public class Value implements Serializable {
+
+    private String name;
+    private Double price;
 
     private String symbol;
     private float quantity;
 
 
-    public Value(String currencyName, long price, String symbol, float quantity) {
-        this.currencyName = currencyName;
+    public Value(String currencyName, Double price, String symbol, float quantity) {
+        this.name = currencyName;
         this.price = price;
         this.symbol = symbol;
         this.quantity = quantity;
     }
 
-    public String getCurrencyName() {
-        return currencyName;
+    public String getName() {
+        return name;
     }
 
-    public void setCurrencyName(String currencyName) {
-        this.currencyName = currencyName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public long getPrice() {
-        return price;
+    public Double getPrice() throws IOException {
+        return this.price;
+
     }
 
-    public void setPrice(long price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
@@ -47,4 +54,6 @@ public class Value {
     public void setQuantity(float quantity) {
         this.quantity = quantity;
     }
+
+
 }

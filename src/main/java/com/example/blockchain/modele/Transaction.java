@@ -1,8 +1,10 @@
 package com.example.blockchain.modele;
 
 
+import java.io.IOException;
+
 public class Transaction {
-    protected final Wallet originWallet;
+    protected final Wallet wallet;
     protected final Wallet destinationWallet;
 
     protected long timestamp;
@@ -11,15 +13,17 @@ public class Transaction {
     protected int isepCoins;
     protected Boolean payed;
 
-    public Transaction(Wallet parOriginWallet, Wallet parDestinationWallet, int parIsepCoins){
-        this.originWallet = parOriginWallet;
-        this.destinationWallet = parDestinationWallet;
-        this.isepCoins = parIsepCoins;
+    public Transaction(Wallet originWallet, Wallet destinationWallet, long timestamp, Value value, int isepCoins) {
+        this.wallet = originWallet;
+        this.destinationWallet = destinationWallet;
+        this.timestamp = timestamp;
+        this.value = value;
+        this.isepCoins = isepCoins;
         this.payed = false;
     }
 
-    public Wallet getOriginWallet() {
-        return originWallet;
+    public Wallet getWallet() {
+        return wallet;
     }
 
     public Wallet getDestinationWallet() {
@@ -39,9 +43,9 @@ public class Transaction {
     }
 
     public Boolean pay(){
-        if (this.isValidTransaction()){
-            this.getOriginWallet().setIsepCoins(this.getOriginWallet().getIsepCoins()-this.getIsepCoins());
-            this.getDestinationWallet().setIsepCoins(this.getDestinationWallet().getIsepCoins()+this.getIsepCoins());
+        if (true){
+            this.getWallet().addCapital(this.getWallet().getCapital()-this.getIsepCoins());
+            this.getDestinationWallet().addCapital(this.getDestinationWallet().getCapital()+this.getIsepCoins());
             payed = true;
             //this.toString();
             System.out.println("PAIEMENT ACCEPTé");
@@ -51,15 +55,28 @@ public class Transaction {
         return false;
     }
 
-    public boolean isValidTransaction(){
-        return ((this.getOriginWallet().getIsepCoins() - this.getIsepCoins() >= 0) && !(this.getOriginWallet().getToken().equals(this.getDestinationWallet().getToken())));
+    public Boolean payWithCapital() throws IOException {
+        if (this.isValidTransactionWithCapital()){
+            wallet.getOwner().buyValueWithCapital(wallet, value);
+            payed = true;
+            System.out.println("PAIEMENT ACCEPTé");
+            return true;
+        }
+        System.out.println("Error 404 -> La transaction est un échec.  ");
+        return false;
+    }
 
+    public boolean isValidTransactionWithCapital() throws IOException {
+        if (wallet.getCapital()>= (value.getPrice()* value.getQuantity())){
+            return true;
+        }
+        return  false;
     }
 
     @Override
     public String toString() {
         return "Transaction{" +
-                originWallet.getOwner() + " fait une transaction de " + isepCoins + " avec " + destinationWallet.getOwner()+
+                wallet.getOwner() + " fait une transaction de " + isepCoins + " avec " + destinationWallet.getOwner()+
                 '}';
     }
 }
