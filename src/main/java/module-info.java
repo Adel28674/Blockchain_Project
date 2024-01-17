@@ -12,6 +12,7 @@ module com.example.blockchain {
     opens com.example.blockchain to javafx.fxml;
     exports com.example.blockchain;
     exports com.example.blockchain.modele;
+    exports com.example.blockchain.Controller;
     opens com.example.blockchain.modele to javafx.fxml;
 
 }

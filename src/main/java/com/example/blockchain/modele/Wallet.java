@@ -2,9 +2,7 @@ package com.example.blockchain.modele;
 
 import java.io.*;
 import java.security.cert.CertificateNotYetValidException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 public class Wallet implements Serializable{
 
@@ -80,6 +78,17 @@ public class Wallet implements Serializable{
         return sum;
     }
 
+    public Double getActifValues() throws IOException {
+        Double sum  = 0.0;
+
+        for (Map.Entry mapentry : listValues.entrySet()) {
+            Value val = (Value) mapentry.getValue();
+            sum += (val.getPrice()*val.getQuantity());
+        }
+
+        return sum;
+    }
+
     public double getPartCrypto() throws IOException {
         Double sumCrypto  = 0.0;
 
@@ -108,6 +117,18 @@ public class Wallet implements Serializable{
 
         return sumStock;
 
+    }
+
+    public HashMap<String, Double> getRepartitionOfeach() throws IOException {
+        HashMap<String, Double> hm = new HashMap<>();
+        for (Map.Entry mapentry : listValues.entrySet()) {
+            Value val = (Value) mapentry.getValue();
+
+            Double part = (val.getPrice()*val.getQuantity());
+
+            hm.put((String) mapentry.getKey(), part);
+        }
+        return hm;
     }
 
     public static byte[] serializeListValues(HashMap<UUID, Wallet> walletHashMap) throws IOException {

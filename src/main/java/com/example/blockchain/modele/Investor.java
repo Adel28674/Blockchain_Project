@@ -149,6 +149,7 @@ public class Investor extends UserInfo implements Serializable {
             for (int i = 0; i < values.length; i++) {
                 investor.buyValueWithCapital(investor.wallets.get((UUID) values[i]), new Stocking("APPLE", 100.00, "AAPL", 2, "apple"));
                 investor.buyValueWithCapital(investor.wallets.get((UUID) values[i]),new Cryptocurrency("BITCOIN", 100.00, "BITCOIN", 8));
+                investor.buyValueWithCapital(investor.wallets.get((UUID) values[i]),new Cryptocurrency("ETHERUM", 100.00, "ETHERUM", 150));
 
 
             }
@@ -158,6 +159,7 @@ public class Investor extends UserInfo implements Serializable {
                 System.out.println("Deuxième Somme des prix du Wallet --------- " + wallet.getToken());
                 System.out.println(wallet.getSumValues());
             }
+            ConnectionToDB.StockWalletInDatabase(investor);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
