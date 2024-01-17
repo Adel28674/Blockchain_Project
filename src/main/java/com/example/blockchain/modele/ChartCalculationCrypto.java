@@ -11,6 +11,9 @@ import org.jfree.data.xy.DefaultHighLowDataset;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import javax.swing.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -26,6 +29,22 @@ public class ChartCalculationCrypto extends ApplicationFrame {
         final ChartPanel chartPanel = new ChartPanel(chart);
         chartPanel.setPreferredSize(new java.awt.Dimension(1200, 700));
         setContentPane(chartPanel);
+
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent event) {
+                if (event.getWindow().equals(this)) {
+                    dispose();
+                }
+            }
+        });
+    }
+
+    @Override
+    public void windowClosing(WindowEvent event){
+        if (event.getWindow() == this) {
+            this.dispose();
+        }
     }
 
 

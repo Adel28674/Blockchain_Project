@@ -39,6 +39,7 @@ public class HelloApplication extends Application {
                 e.printStackTrace();
             }
         }
+        System.exit(0);
     }
 
     public static void main(String[] args) {

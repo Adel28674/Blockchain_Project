@@ -80,6 +80,36 @@ public class Wallet implements Serializable{
         return sum;
     }
 
+    public double getPartCrypto() throws IOException {
+        Double sumCrypto  = 0.0;
+
+        for (Map.Entry mapentry : listValues.entrySet()) {
+            Value val = (Value) mapentry.getValue();
+
+            if (val instanceof Cryptocurrency){
+                sumCrypto += (val.getPrice()*val.getQuantity());
+            }
+        }
+
+        return sumCrypto;
+
+    }
+
+    public double getPartStock() throws IOException {
+        Double sumStock  = 0.0;
+
+        for (Map.Entry mapentry : listValues.entrySet()) {
+            Value val = (Value) mapentry.getValue();
+
+            if (val instanceof Stocking){
+                sumStock += (val.getPrice()*val.getQuantity());
+            }
+        }
+
+        return sumStock;
+
+    }
+
     public static byte[] serializeListValues(HashMap<UUID, Wallet> walletHashMap) throws IOException {
         try (ByteArrayOutputStream baos = new ByteArrayOutputStream();
              ObjectOutputStream oos = new ObjectOutputStream(baos)) {
@@ -102,6 +132,5 @@ public class Wallet implements Serializable{
             }
         }
         return new HashMap<>();
-
     }
 }

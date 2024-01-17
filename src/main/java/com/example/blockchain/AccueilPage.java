@@ -1,41 +1,31 @@
 package com.example.blockchain;
 
-import com.example.blockchain.modele.ChartCalculationCrypto;
-import com.example.blockchain.modele.CurrentUser;
-import com.example.blockchain.modele.Wallet;
-import com.example.blockchain.modele.WalletChart;
+import com.example.blockchain.modele.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Task;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Group;
-import javafx.scene.Node;
-import javafx.scene.Scene;
-import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
-import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.ComboBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.json.JSONArray;
-import org.json.JSONObject;
 
 import javafx.scene.control.Label;
-import java.io.BufferedReader;
+
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
-import java.sql.Timestamp;
 import java.util.*;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class AccueilPage implements Initializable {
 
@@ -51,9 +41,35 @@ public class AccueilPage implements Initializable {
     @FXML
     public LineChart<String,Number> lineChartWallet = WalletChart.createRealTimeLineChart();
 
+    @FXML
+    public Label bitcoinChange;
+
+    @FXML
+    public Label EthChange;
+
+    @FXML
+    public Label LtcChange;
+
+    @FXML
+    public Label neoChange;
+
+    @FXML
+    public Label bnbChange;
+
+    @FXML
+    public VBox pieChartContainer;
+
+    @FXML
+    public PieChart pieChartRepartitionIndividuals;
+
     public Double previousValue = 0.0;
 
     public XYChart.Series<String, Number> series = new XYChart.Series<>();
+
+    public boolean firstChangeWallet = true;
+
+    private static ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+
 
 
     public void onBtnClickChartInitializer() throws IOException {
@@ -121,7 +137,6 @@ public class AccueilPage implements Initializable {
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
 
-
     }
 
     public void setData() {
@@ -133,13 +148,117 @@ public class AccueilPage implements Initializable {
         }
 
         comboBoxWallets.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+
+
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                System.out.println("CHANGE");
-                series.getData().removeAll();
+
+                Wallet wal = CurrentUser.userConnected.getWallets().get(UUID.fromString(comboBoxWallets.getValue()));
+
+                if (firstChangeWallet==true){
+                    System.out.println("CHANGE");
+                    firstChangeWallet = false;
+
+                    try {
+                        PieChart pie = pieChartWalletRepartition.repartionOfCryptoAndStockCollective(wal);
+                        pieChartContainer.getChildren().clear();
+                        pieChartContainer.getChildren().add(pie);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+
+
+                }else {
+                    System.out.println("CHANGE");
+                    series.getData().clear();
+                    Platform.runLater(()-> {
+                        lineChartWallet = WalletChart.createRealTimeLineChart();
+                    });
+
+
+                    try {
+                        PieChart pie = pieChartWalletRepartition.repartionOfCryptoAndStockCollective(wal);
+                        pieChartContainer.getChildren().clear();
+                        pieChartContainer.getChildren().add(pie);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
             }
         });
 
+
+        this.changeLabelCrypto();
+
+
     }
+
+        public void changeLabelCrypto(){
+            Runnable tache = new Runnable() {
+                @Override
+                public void run() {
+                    try {
+
+                        String bitcoinPrice = BinanceManager.getOneCryptoValueJson("BITCOIN").getString("price");
+                        String ethPrice = BinanceManager.getOneCryptoValueJson("ETHERUM").getString("price");
+                        String ltcPrice = BinanceManager.getOneCryptoValueJson("LITECOIN").getString("price");
+                        String neoPrice = BinanceManager.getOneCryptoValueJson("NEO").getString("price");
+                        String bnbPrice = BinanceManager.getOneCryptoValueJson("BNB").getString("price");
+
+                        Platform.runLater(() -> {
+                            bitcoinChange.setText(bitcoinPrice);
+                            EthChange.setText(ethPrice);
+                            LtcChange.setText(ltcPrice);
+                            neoChange.setText(neoPrice);
+                            bnbChange.setText(bnbPrice);
+                        });
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            };
+
+            scheduler.scheduleAtFixedRate(tache, 0, 1, TimeUnit.SECONDS);
+
+        }
+
+    public void onBitcoinLabelClicked() throws IOException {
+        Platform.runLater(() -> {
+            try {
+                ChartCalculationCrypto c = new ChartCalculationCrypto("CandlestickChart du prix du bitcoin", "BITCOIN");
+                c.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
+    public void onEthLabelClicked() throws IOException {
+        ChartCalculationCrypto c = new ChartCalculationCrypto("CandlestickChart du prix de l'Etherum", "ETHERUM");
+        c.show();
+    }
+
+
+    public void onLtcLabelClicked() throws IOException {
+        ChartCalculationCrypto c = new ChartCalculationCrypto("CandlestickChart du prix du Litecoin", "LITECOIN");
+        c.show();
+    }
+
+
+    public void onNeoLabelClicked() throws IOException {
+        ChartCalculationCrypto c = new ChartCalculationCrypto("CandlestickChart du prix du neo", "NEO");
+        c.show();
+    }
+
+
+    public void onBnbLabelClicked() throws IOException {
+        ChartCalculationCrypto c = new ChartCalculationCrypto("CandlestickChart du prix du BNB", "BNB");
+        c.show();
+    }
+
+
+
+
 }
 

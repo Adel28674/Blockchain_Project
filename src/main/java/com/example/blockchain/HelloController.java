@@ -54,12 +54,12 @@ public class HelloController {
             List<String> info = ConnectionToDB.getUserInfo(login_field.getText());
             CurrentUser.userConnected = new Investor(new UserInfo(info.get(0),info.get(1),info.get(2),info.get(3),info.get(4)));
             try {
-                System.out.println(getWalletsFromDatabase(CurrentUser.userConnected).toString());
                 CurrentUser.userConnected.setWallets(getWalletsFromDatabase(CurrentUser.userConnected));
             } catch (ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
             System.out.println("Connecté");
+            System.out.println(CurrentUser.userConnected.getWallets().toString());
             Stage stage = new Stage() ;
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("accueilPage.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 800, 600);

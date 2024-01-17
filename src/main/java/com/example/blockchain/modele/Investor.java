@@ -97,7 +97,7 @@ public class Investor extends UserInfo implements Serializable {
     }
 
     public static void main(String[] args) {
-        List<String> info = ConnectionToDB.getUserInfo("adel");
+        List<String> info = ConnectionToDB.getUserInfo("a");
 
         Investor investor = new Investor(new UserInfo(info.get(0), info.get(1), info.get(2), info.get(3), info.get(4)));
 
@@ -144,8 +144,14 @@ public class Investor extends UserInfo implements Serializable {
                 System.out.println("Somme des prix du Wallet --------- " + wallet.getToken());
                 System.out.println(wallet.getSumValues());
             }
-            UUID id = UUID.fromString("2f824843-4eb4-4cfd-957e-4b1ec0863d25");
-            investor.buyValueWithCapital(investor.wallets.get(id), new Stocking("APPLE", 100.00, "AAPL", 2, "apple"));
+
+            Object[] values = investor.wallets.keySet().toArray();
+            for (int i = 0; i < values.length; i++) {
+                investor.buyValueWithCapital(investor.wallets.get((UUID) values[i]), new Stocking("APPLE", 100.00, "AAPL", 2, "apple"));
+                investor.buyValueWithCapital(investor.wallets.get((UUID) values[i]),new Cryptocurrency("BITCOIN", 100.00, "BITCOIN", 8));
+
+
+            }
 
             for (Map.Entry mapentry : investor.wallets.entrySet()) {
                 Wallet wallet  = (Wallet) mapentry.getValue();

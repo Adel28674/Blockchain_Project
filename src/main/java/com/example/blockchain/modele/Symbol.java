@@ -8,7 +8,7 @@ public class Symbol {
         "BITCOIN", "BTCUSDT",
         "ETHERUM", "ETHUSDT",
         "LITECOIN", "LTCUSDT",
-        "NEO", "NOEUSDT",
+        "NEO", "NEOUSDT",
         "BNB", "BNBUSDT"
     );
 public static Map<String, String> stockHM = Map.of(

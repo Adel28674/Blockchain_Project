@@ -6,10 +6,8 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
-import java.sql.Time;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.Executors;
@@ -22,7 +20,7 @@ public class BinanceManager {
 
     private static ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 
-    public static JSONObject getOneCryptoValue(String symbol) throws IOException {
+    public static JSONObject getOneCryptoValueJson(String symbol) throws IOException {
         String path1 = "ticker/price?symbol="+ Symbol.cryptoHM.get(symbol);
         JSONObject json  = new JSONObject();
         URL url = new URL(path+path1);
@@ -55,6 +53,41 @@ public class BinanceManager {
 
 
         return json;
+    }
+
+    public static Double getOneCryptoValue(String symbol) throws IOException {
+        String path1 = "ticker/price?symbol="+ Symbol.cryptoHM.get(symbol);
+        JSONObject json  = new JSONObject();
+        URL url = new URL(path+path1);
+
+        BufferedReader in = null;
+
+        StringBuilder jsontext = new StringBuilder();
+
+
+
+        try{
+            URLConnection yc = url.openConnection();
+            System.out.println("Connected to Binance API");
+
+            in = new BufferedReader(
+                    new InputStreamReader(
+                            yc.getInputStream()
+                    )
+            );
+            String inputLine;
+            while((inputLine = in.readLine()) != null){
+                jsontext.append(inputLine);
+                json = new JSONObject(jsontext.toString());
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } finally{
+            in.close();
+        }
+
+
+        return (Double) json.get("price");
     }
 
     public static JSONArray getCryptoValue(String symbol) throws IOException {
@@ -134,7 +167,7 @@ public class BinanceManager {
             @Override
             public void run() {
                 try {
-                    Double bitcoinPrice = Double.parseDouble(getOneCryptoValue(symbol).getString("price"));
+                    Double bitcoinPrice = Double.parseDouble(getOneCryptoValueJson(symbol).getString("price"));
 
                     System.out.println("Prix actuel du Bitcoin : " + bitcoinPrice);
                 } catch (Exception e) {
