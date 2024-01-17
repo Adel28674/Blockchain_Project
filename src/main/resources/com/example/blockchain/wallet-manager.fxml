@@ -11,4 +11,16 @@
             fx:controller="com.example.blockchain.Controller.WalletManagerController"
             prefHeight="400.0" prefWidth="600.0">
 
+    <BorderPane prefHeight="616.0" prefWidth="1000.0" xmlns:fx="http://javafx.com/fxml/1">
+        <left>
+            <VBox spacing="10">
+                <Button fx:id="btnSidebarAccueil" onAction="#onbtnSidebarAccueilClicked" text="Accueil" />
+                <Button fx:id="btnSidebarWalletManager" onAction="#onbtnSidebarWalletManagerClicked" text="Wallet Manager" />
+                <Button fx:id="btnSidebaMarket" mnemonicParsing="false" onAction="#onbtnSidebaMarketClicked" text="Market" />
+                <Button fx:id="btnSidebaProfile" mnemonicParsing="false" text="Profil" />
+                <!-- Ajouter d'autres boutons si nécessaire -->
+            </VBox>
+        </left>
+    </BorderPane>
+
 </AnchorPane>

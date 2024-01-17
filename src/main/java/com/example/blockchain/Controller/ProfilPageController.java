@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class MarketController {
+public class ProfilPageController {
 
     @FXML
     public Button btnSidebarAccueil;
