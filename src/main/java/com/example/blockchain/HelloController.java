@@ -30,6 +30,9 @@ public class HelloController {
     private Button btn_login;
 
     @FXML
+    private Button btn_signup;
+
+    @FXML
     private TextField login_field;
 
     @FXML
