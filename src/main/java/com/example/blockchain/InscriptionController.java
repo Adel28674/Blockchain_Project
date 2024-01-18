@@ -259,5 +259,18 @@ public class InscriptionController implements Initializable {
         }
     }
 
+    public void hyperlienClickedAlreadyHaveAnAccount() throws IOException {
+        Stage stage = new Stage() ;
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        stage.setTitle("Hello!");
+        stage.setScene(scene);
+        stage.show();
+
+
+        Stage st = (Stage) username_field.getScene().getWindow();
+        st.close();
+    }
+
 
 }

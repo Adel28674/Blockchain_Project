@@ -1,57 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="546.0" prefWidth="412.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.blockchain.InscriptionController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700" prefWidth="693.0" style="-fx-background-color: #b3e5fc;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.blockchain.InscriptionController">
    <children>
-      <VBox alignment="TOP_CENTER" prefHeight="546.0" prefWidth="489.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <AnchorPane layoutX="192.0" layoutY="41.0" prefHeight="600" prefWidth="309.0" style="-fx-background-color: #212121; -fx-background-radius: 10;">
          <children>
-            <Label prefHeight="26.0" prefWidth="140.0" text="Create a new Account" />
-            <Label text="Already registered ? Log in" />
-            <VBox prefHeight="472.0" prefWidth="252.0">
-               <children>
-                  <Label text="Username" />
-                  <TextField fx:id="username_field" style="-fx-border-width: 2px;" />
-                  <Label fx:id="usernameErrorMessage" text="Ce nom existe déjà" textFill="#cf2317" visible="false">
-                     <VBox.margin>
-                        <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
-                     </VBox.margin></Label>
-                  <Label text="Full Name" />
-                  <TextField fx:id="name_field" style="-fx-border-width: 2px;"/>
-                  <Label fx:id="nameErrorMessage" text="Ce nom est vide" textFill="#cf2317" visible="false">
-                     <VBox.margin>
-                        <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
-                     </VBox.margin></Label>
-                  <Label text="Password" />
-                  <PasswordField fx:id="passwd_field" style="-fx-border-width: 2px;"/>
-                  <Label text="Confirm Password" />
-                  <PasswordField fx:id="confirm_passwd_field" style="-fx-border-width: 2px;"/>
-                  <Label fx:id="passwdErrorMessage" text="Les deux mots de passe ne correspondent pas" textFill="#cf2317" visible="false">
-                     <VBox.margin>
-                        <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
-                     </VBox.margin></Label>
-                  <Label text="Email" />
-                  <TextField fx:id="mail_field" style="-fx-border-width: 2px;"/>
-                  <Label fx:id="mailErrorMessage" text="Le mail doit correspondre à la forme soufiane@example.com" textFill="#cf2317" visible="false">
-                     <VBox.margin>
-                        <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
-                     </VBox.margin></Label>
-                  <Label text="Phone Number " />
-                  <TextField fx:id="phone_field" style="-fx-border-width: 2px;"/>
-                  <Label fx:id="phoneErrorMessage" text="Il ne faut mettre que 10 numéros" textFill="#cf2317" visible="false">
-                     <VBox.margin>
-                        <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
-                     </VBox.margin></Label>
+            <Label layoutX="46.0" layoutY="37.0" prefHeight="30.0" prefWidth="274.0" text="Create a New Account" textFill="WHITE">
+               <font>
+                  <Font name="Tahoma Bold" size="24.0" />
+               </font>
+            </Label>
 
-                  <Button fx:id="registration" onAction="#btn_RegistrationClicked" text="S'inscrire" />
-               </children>
-            </VBox>
+            <AnchorPane layoutX="46.0" layoutY="65.0" prefHeight="3.0" prefWidth="265.0" style="-fx-background-color: #00e5ff;" />
+            <TextField fx:id="username_field" layoutX="80" layoutY="100.0" prefHeight="30.0" prefWidth="209.0" promptText="Username" style="-fx-border-width: 2px;" />
+            <Label fx:id="usernameErrorMessage" layoutX="80" layoutY="130.0" text="Ce nom existe déjà" textFill="#cf2317" visible="false" />
+
+            <TextField fx:id="name_field" layoutX="80" layoutY="160.0" prefHeight="30.0" prefWidth="209.0" promptText="Full Name" style="-fx-border-width: 2px;" />
+            <Label fx:id="nameErrorMessage" layoutX="80" layoutY="190.0" text="Ce nom est vide" textFill="#cf2317" visible="false" />
+
+            <PasswordField fx:id="passwd_field" layoutX="80" layoutY="220.0" prefHeight="30.0" prefWidth="209.0" promptText="Password" style="-fx-border-width: 2px;" />
+            <PasswordField fx:id="confirm_passwd_field" layoutX="80" layoutY="260.0" prefHeight="30.0" prefWidth="209.0" promptText="Confirm Password" style="-fx-border-width: 2px;" />
+            <Label fx:id="passwdErrorMessage" layoutX="80" layoutY="290.0" text="Les deux mots de passe ne correspondent pas" textFill="#cf2317" visible="false" />
+
+            <TextField fx:id="mail_field" layoutX="80" layoutY="320.0" prefHeight="30.0" prefWidth="209.0" promptText="Mail" style="-fx-border-width: 2px;" />
+            <Label fx:id="mailErrorMessage" layoutX="80" layoutY="350.0" text="Le mail doit correspondre à la forme soufiane@example.com" textFill="#cf2317" visible="false" />
+
+            <TextField fx:id="phone_field" layoutX="80" layoutY="380.0" prefHeight="30.0" prefWidth="209.0" promptText="Phone Number" style="-fx-border-width: 2px;" />
+            <Label fx:id="phoneErrorMessage" layoutX="80" layoutY="410.0" text="Il ne faut mettre que 10 numéros" textFill="#cf2317" visible="false" />
+
+            <Button fx:id="registration" layoutX="80" layoutY="440.0" mnemonicParsing="false" onAction="#btn_RegistrationClicked" prefHeight="30.0" prefWidth="209.0" style="-fx-background-color: #00e5ff;" text="SignUp" textFill="WHITE">
+               <font>
+                  <Font name="Tahoma Bold" size="14.0" />
+               </font>
+            </Button>
+            <Hyperlink layoutX="80" layoutY="475.0" onAction="#hyperlienClickedAlreadyHaveAnAccount" prefHeight="24.0" prefWidth="202.0" text="Already Registered ? Login" />
+
          </children>
-         <padding>
-            <Insets left="80.0" right="80.0" />
-         </padding>
-      </VBox>
+      </AnchorPane>
    </children>
 </AnchorPane>

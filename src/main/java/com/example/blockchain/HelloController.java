@@ -90,7 +90,7 @@ public class HelloController {
 
         Stage stage = new Stage() ;
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("InscriptionPage.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        Scene scene = new Scene(fxmlLoader.load(), 800, 700);
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();
