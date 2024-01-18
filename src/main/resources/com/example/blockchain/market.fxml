@@ -3,24 +3,32 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.blockchain.Controller.MarketController">
+<?import javafx.scene.text.Font?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="423.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.blockchain.Controller.MarketController">
+    <children>
+        <Label alignment="CENTER" prefHeight="28.0" prefWidth="600.0" style="-fx-background-color: #01579b;" text="Market" textFill="WHITE">
+            <font>
+                <Font name="Tahoma Bold" size="13.0" />
+            </font>
+        </Label>
+        <BorderPane prefHeight="616.0" prefWidth="1000.0" xmlns:fx="http://javafx.com/fxml/1">
+            <left>
+                <VBox spacing="10">
+                    <Button fx:id="btnSidebarAccueil" onAction="#onbtnSidebarAccueilClicked" text="Accueil" />
+                    <Button fx:id="btnSidebarWalletManager" onAction="#onbtnSidebarWalletManagerClicked" text="Wallet Manager" />
+                    <Button fx:id="btnSidebaMarket" mnemonicParsing="false" onAction="#onbtnSidebaMarketClicked" text="Market" />
+                    <Button fx:id="btnSidebaProfile" mnemonicParsing="false" text="Profil" />
 
-    <BorderPane prefHeight="616.0" prefWidth="1000.0" xmlns:fx="http://javafx.com/fxml/1">
-        <left>
-            <VBox spacing="10">
-                <Button fx:id="btnSidebarAccueil" onAction="#onbtnSidebarAccueilClicked" text="Accueil" />
-                <Button fx:id="btnSidebarWalletManager" onAction="#onbtnSidebarWalletManagerClicked" text="Wallet Manager" />
-                <Button fx:id="btnSidebaMarket" mnemonicParsing="false" onAction="#onbtnSidebaMarketClicked" text="Market" />
-                <Button fx:id="btnSidebaProfile" mnemonicParsing="false" text="Profil" />
+                </VBox>
+            </left>
+          <center>
+             <VBox fx:id="container">
 
-            </VBox>
-        </left>
-      <center>
-         <VBox fx:id="container">
+             </VBox>
+          </center>
+        </BorderPane>
 
-         </VBox>
-      </center>
-    </BorderPane>
+    </children>
 
 
 </AnchorPane>
