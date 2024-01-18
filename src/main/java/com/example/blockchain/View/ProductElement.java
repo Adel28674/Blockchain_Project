@@ -24,7 +24,7 @@ public class ProductElement extends VBox {
     private HashMap<String, Value> hmVal;
     public ProductElement(Value value){
 
-        this.getClass().getResource("/com/example/blockchain/css/productElementcss.css").toExternalForm();
+        this.getClass().getResource("@css/productElementcss.css").toExternalForm();
         this.getStyleClass().add("product-Element");
 
         Label nomValeur = new Label();
@@ -45,6 +45,8 @@ public class ProductElement extends VBox {
 
         nomValeur.getStyleClass().add("button");
 
+        buyBtn.getStyleClass().add("button");
+
         buyBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -58,9 +60,6 @@ public class ProductElement extends VBox {
                 TextField quantity = new TextField();
                 Label labelPrixTot = new Label();
 
-                buyBtn.getStyleClass().add("button");
-                nomValeur.getStyleClass().add("label");
-                prixUnitaire.getStyleClass().add("label");
 
 
 

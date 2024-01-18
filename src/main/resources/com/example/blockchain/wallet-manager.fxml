@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.chart.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
@@ -9,88 +8,71 @@
 
 
     <children>
+      <BorderPane prefHeight="200.0" prefWidth="600.0">
+         <left>
 
-        <VBox layoutX="-2.0" layoutY="-2.0" prefHeight="398.0" prefWidth="109.0" style="-fx-background-color: #616161;">
-            <children>
-                <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="110.0" style="-fx-background-color: #0277bd;" text="Acceuil" textFill="WHITE">
-                    <font>
-                        <Font name="Tahoma Bold" size="12.0" />
-                    </font>
-                </Button>
-                <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="111.0" style="-fx-background-color: #0288d1;" text="Market" textFill="WHITE">
-                    <font>
-                        <Font name="System Bold" size="12.0" />
-                    </font>
-                </Button>
-                <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="109.0" style="-fx-background-color: #039be5;" text="Wallet Manager" textFill="WHITE">
-                    <font>
-                        <Font name="System Bold" size="12.0" />
-                    </font>
-                </Button>
-                <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="109.0" style="-fx-background-color: #03a9f4;" text="Profil" textFill="WHITE">
-                    <font>
-                        <Font name="Tahoma Bold" size="12.0" />
-                    </font>
-                </Button>
-            </children>
-        </VBox>
-        <ToolBar layoutX="109.0" layoutY="26.0" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #01579b;">
-            <items>
-                <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="188.0" style="-fx-background-color: #0277bd;" text="Add Portfolio">
-                    <font>
-                        <Font name="Tahoma Bold" size="12.0" />
-                    </font>
-                </Button>
-            </items>
-        </ToolBar>
-        <ToolBar layoutX="509.0" layoutY="26.0" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #01579b;">
-            <items>
-                <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="188.0" style="-fx-background-color: #039be5;" text="Refresh Data">
-                    <font>
-                        <Font name="Tahoma Bold" size="12.0" />
-                    </font>
-                </Button>
-            </items>
-        </ToolBar>
-        <ToolBar layoutX="309.0" layoutY="26.0" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #01579b;">
-            <items>
-                <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="188.0" style="-fx-background-color: #0288d1;" text="Remove Portfolio">
-                    <font>
-                        <Font name="Tahoma Bold" size="12.0" />
-                    </font>
-                </Button>
-            </items>
-        </ToolBar>
-        <SplitPane layoutX="109.0" layoutY="87.0" prefHeight="315.0" prefWidth="491.0">
-            <items>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                    <children>
-                        <HBox layoutX="-3.0" prefHeight="313.0" prefWidth="900">
-                            <children>
-
-                                <PieChart prefHeight="314.0" prefWidth="300.0" title="PieChart" />
-
-                                <LineChart prefHeight="314.0" prefWidth="300.0">
-                                    <xAxis>
-                                        <CategoryAxis />
-                                    </xAxis>
-                                    <yAxis>
-                                        <NumberAxis />
-                                    </yAxis>
-                                </LineChart>
-                            </children>
-                        </HBox>
-
-                    </children>
-                </AnchorPane>
-            </items>
-        </SplitPane>
-        <ComboBox layoutX="109.0" layoutY="62.0" prefHeight="25.0" prefWidth="200.0" promptText="Select Time Period" style="-fx-background-color: #03a9f4; -fx-background-radius: 0;" />
-        <Label alignment="CENTER" layoutX="109.0" prefHeight="26.0" prefWidth="600.0" style="-fx-background-color: #01579b;" text="Wallet Manger" textFill="WHITE">
-            <font>
-                <Font name="Tahoma Bold" size="13.0" />
-            </font>
-        </Label>
+              <VBox prefHeight="398.0" prefWidth="109.0" style="-fx-background-color: #616161;" BorderPane.alignment="CENTER">
+                  <children>
+                      <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="110.0" style="-fx-background-color: #0277bd;" text="Acceuil" textFill="WHITE">
+                          <font>
+                              <Font name="Tahoma Bold" size="12.0" />
+                          </font>
+                      </Button>
+                      <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="111.0" style="-fx-background-color: #0288d1;" text="Wallet Manager" textFill="WHITE">
+                          <font>
+                              <Font name="System Bold" size="12.0" />
+                          </font>
+                      </Button>
+                      <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="109.0" style="-fx-background-color: #039be5;" text="Market" textFill="WHITE">
+                          <font>
+                              <Font name="System Bold" size="12.0" />
+                          </font>
+                      </Button>
+                      <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="109.0" style="-fx-background-color: #03a9f4;" text="Profil" textFill="WHITE">
+                          <font>
+                              <Font name="Tahoma Bold" size="12.0" />
+                          </font>
+                      </Button>
+                  </children>
+              </VBox>
+         </left>
+         <top>
+              <ToolBar prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #01579b;" BorderPane.alignment="CENTER">
+                  <items>
+                      <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="188.0" style="-fx-background-color: #0277bd;" text="Add Portfolio">
+                          <font>
+                              <Font name="Tahoma Bold" size="12.0" />
+                          </font>
+                      </Button>
+                    <ToolBar prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #01579b;">
+                        <items>
+                            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="188.0" style="-fx-background-color: #039be5;" text="Refresh Data">
+                                <font>
+                                    <Font name="Tahoma Bold" size="12.0" />
+                                </font>
+                            </Button>
+                        </items>
+                    </ToolBar>
+                    <ToolBar prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #01579b;">
+                        <items>
+                            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="188.0" style="-fx-background-color: #0288d1;" text="Remove Portfolio">
+                                <font>
+                                    <Font name="Tahoma Bold" size="12.0" />
+                                </font>
+                            </Button>
+                        </items>
+                    </ToolBar>
+                    <ComboBox prefHeight="25.0" prefWidth="200.0" promptText="Select Time Period" style="-fx-background-color: #03a9f4; -fx-background-radius: 0;" />
+                    <Label alignment="CENTER" prefHeight="26.0" prefWidth="600.0" style="-fx-background-color: #01579b;" text="Wallet Manger" textFill="WHITE">
+                        <font>
+                            <Font name="Tahoma Bold" size="13.0" />
+                        </font>
+                    </Label>
+                  </items>
+              </ToolBar>
+         </top>
+      </BorderPane>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" />
 
     </children>
 </AnchorPane>

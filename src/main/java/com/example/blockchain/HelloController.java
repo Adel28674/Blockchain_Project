@@ -58,7 +58,7 @@ public class HelloController {
             System.out.println(CurrentUser.userConnected.getWallets().toString());
             Stage stage = new Stage() ;
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("accueilPage.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 1000, 800);
+            Scene scene = new Scene(fxmlLoader.load(), 1100, 800);
             AccueilPage accueilPage = fxmlLoader.getController();
             accueilPage.getClass().getResource("/com/example/blockchain/css/accueilcss.css").toExternalForm();
             stage.setTitle("Hello!");

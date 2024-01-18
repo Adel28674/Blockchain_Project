@@ -20,9 +20,9 @@
 
     <BorderPane prefHeight="800" prefWidth="1200">
         <top>
-            <HBox prefWidth="2000" style="-fx-background-color: #01579b;" alignment="CENTER_RIGHT">
+            <HBox alignment="CENTER_RIGHT" prefWidth="2000" style="-fx-background-color: #01579b;">
 
-                <ComboBox id="combobox" fx:id="comboBoxWallets" prefHeight="14.0" prefWidth="90.0" promptText="--Choose your Wallet--" style="-fx-background-color: #0277bd;">
+                <ComboBox id="combobox" fx:id="comboBoxWallets" prefHeight="26.0" prefWidth="178.0" promptText="--Choose your Wallet--" style="-fx-background-color: #0277bd;">
                     <items>
                         <FXCollections fx:factory="observableArrayList">
                             <String fx:value="Item 1" />
@@ -54,12 +54,12 @@
                             <Font name="Tahoma Bold" size="12.0" />
                         </font>
                     </Button>
-                    <Button fx:id="btnSidebarWalletManager" mnemonicParsing="false" onAction="#onbtnSidebarWalletManagerClicked" prefHeight="30.0" prefWidth="111.0" style="-fx-background-color: #0288d1;" text="Market" textFill="WHITE">
+                    <Button fx:id="btnSidebarWalletManager" mnemonicParsing="false" onAction="#onbtnSidebarWalletManagerClicked" prefHeight="30.0" prefWidth="111.0" style="-fx-background-color: #0288d1;" text="Wallet Manager" textFill="WHITE">
                         <font>
                             <Font name="System Bold" size="12.0" />
                         </font>
                     </Button>
-                    <Button fx:id="btnSidebaMarket" mnemonicParsing="false" onAction="#onbtnSidebaMarketClicked" prefHeight="30.0" prefWidth="109.0" style="-fx-background-color: #039be5;" text="Wallet Manager" textFill="WHITE">
+                    <Button fx:id="btnSidebaMarket" mnemonicParsing="false" onAction="#onbtnSidebaMarketClicked" prefHeight="30.0" prefWidth="109.0" style="-fx-background-color: #039be5;" text="Market" textFill="WHITE">
                         <font>
                             <Font name="System Bold" size="12.0" />
                         </font>
