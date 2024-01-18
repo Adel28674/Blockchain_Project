@@ -7,9 +7,9 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="423.0" prefWidth="900" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.blockchain.Controller.MarketController">
     <children>
 
-        <BorderPane prefHeight="616.0" prefWidth="1000.0" xmlns:fx="http://javafx.com/fxml/1">
+        <BorderPane prefHeight="616.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns:fx="http://javafx.com/fxml/1">
             <top>
-                <Label alignment="CENTER" prefHeight="28.0" prefWidth="600.0" style="-fx-background-color: #01579b;" text="Market" textFill="WHITE">
+                <Label alignment="CENTER" prefHeight="28.0" prefWidth="928.0" style="-fx-background-color: #01579b;" text="Market" textFill="WHITE">
                     <font>
                         <Font name="Tahoma Bold" size="13.0" />
                     </font>

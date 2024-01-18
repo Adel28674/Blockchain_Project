@@ -1,0 +1,13 @@
+
+.wallet-box {
+    -fx-background-color: #f0f0f0;
+    -fx-border-color: #000000;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-padding: 10px;
+}
+
+.wallet-label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}

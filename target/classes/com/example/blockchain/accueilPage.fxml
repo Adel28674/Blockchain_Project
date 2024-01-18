@@ -73,9 +73,9 @@
             </VBox>
         </left>
         <center>
-            <HBox prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <HBox prefHeight="200.0" prefWidth="300" BorderPane.alignment="CENTER">
                 <children>
-                    <VBox alignment="TOP_CENTER" prefHeight="2500" prefWidth="156.0" spacing="20.0" style="-fx-background-color: #424242;">
+                    <VBox alignment="TOP_CENTER" prefHeight="2500" prefWidth="200" spacing="20.0" style="-fx-background-color: #424242;">
 
                         <Label prefHeight="18.0" prefWidth="101.0" text="Total Balance" textFill="#e0e0e0">
                             <font>

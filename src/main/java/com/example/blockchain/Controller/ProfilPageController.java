@@ -13,12 +13,17 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Label;
 import javafx.scene.layout.TilePane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+
+
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.UUID;
 import java.util.regex.Pattern;
 
 public class ProfilPageController {
@@ -46,6 +51,13 @@ public class ProfilPageController {
     public TextField phone_field;
     @FXML
     public Button editProfile;
+
+    @FXML
+    public Label name;
+    @FXML
+    public Label mail;
+    @FXML
+    public Label phone;
     @FXML
     public Button changePassword;
 
@@ -73,7 +85,10 @@ public class ProfilPageController {
 
         Stage stage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("wallet-manager.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        Scene scene = new Scene(fxmlLoader.load(), 900, 600);
+        scene.getStylesheets().add(getClass().getResource("/com/example/blockchain/css/walletboxcss.css").toExternalForm());
+        WalletManagerController walCon = fxmlLoader.getController();
+        walCon.setData();
 
         stage.setTitle("Wallet Manager!");
         stage.setScene(scene);
@@ -81,18 +96,39 @@ public class ProfilPageController {
     }
 
     public void onbtnSidebaMarketClicked() throws IOException {
-        Stage stage = (Stage) btnSidebarAccueil.getScene().getWindow();
-        stage.close();
+
 
         Stage stage1 = new Stage();
 
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("market.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        Scene scene = new Scene(fxmlLoader.load(), 900, 600);
+        MarketController m = fxmlLoader.getController();
+        m.setData();
 
         stage1.setTitle("Market!");
         stage1.setScene(scene);
         stage1.show();
+        Stage stage = (Stage) btnSidebarAccueil.getScene().getWindow();
+        stage.close();
     }
+
+    public void onbtnProfileClicked() throws IOException {
+
+        Stage stage1 = new Stage();
+
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("profil-page.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+
+        ProfilPageController p = fxmlLoader.getController();
+        p.setData();
+
+        stage1.setTitle("Votre Profil!");
+        stage1.setScene(scene);
+        stage1.show();
+        Stage stage = (Stage) btnSidebarAccueil.getScene().getWindow();
+        stage.close();
+    }
+
 
     private boolean isUsernameField_Valid() throws IOException, SQLException {
         String input = username_field.getText();
@@ -156,11 +192,74 @@ public class ProfilPageController {
 
     public void btn_ChangePasswordClicked() {
 
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Change Password");
+        alert.setHeaderText("Insérer un mot de passe valide");
+
+        VBox v= new VBox();
+
+        TextField passwd_field = new TextField();
+        passwd_field.setPromptText("Mot de passe");
+
+        Label passwdErrorMessage = new Label("Les deux mots de passe ne correspondent pas");
+        passwdErrorMessage.setVisible(false);
+
+
+        TextField confirm_passwd_field = new TextField();
+        confirm_passwd_field.setPromptText("Confirmez");
+
+
+        v.getChildren().addAll(passwd_field,confirm_passwd_field,passwdErrorMessage);
+
+
+        confirm_passwd_field.setOnKeyTyped(event->{
+            try {
+                String input = passwd_field.getText();
+                String input1 = confirm_passwd_field.getText();
+                if (input==null || input.matches("") || !input.matches(input1)) {
+                    passwd_field.setStyle("-fx-text-box-border: #0ac40d; -fx-focus-color: #0ac40d;");
+                    confirm_passwd_field.setStyle("-fx-text-box-border: #cf2317; -fx-focus-color: #cf2317;");
+                    passwdErrorMessage.setVisible(true);
+                }else{
+                    passwd_field.setStyle("-fx-text-box-border: #0ac40d; -fx-focus-color: #0ac40d;");
+                    confirm_passwd_field.setStyle("-fx-text-box-border: #0ac40d; -fx-focus-color: #0ac40d;");
+                    passwdErrorMessage.setVisible(false);
+                }
+            }catch (Exception e){
+                System.out.println(e.getMessage());
+            }
+        });
+
+        alert.getDialogPane().setContent(v);
+
+
+        alert.showAndWait().ifPresent(response -> {
+            String input = passwd_field.getText();
+            String input1 = confirm_passwd_field.getText();
+            if (response == ButtonType.OK && input==null || input.matches("") || input.matches(input1)) {
+                try {
+                    ConnectionToDB.changePassword(CurrentUser.userConnected.getUserLogin(), input);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+                alert.close();
+            }
+            if (response == ButtonType.CANCEL){
+                alert.close();
+            }
+        });
+
     }
 
     public void setData(){
         name_field.setText(CurrentUser.userConnected.getUserName());
         mail_field.setText(CurrentUser.userConnected.getMail());
         phone_field.setText(CurrentUser.userConnected.getUserPhone());
+
+        name.setText(CurrentUser.userConnected.getUserName());
+        mail.setText(CurrentUser.userConnected.getMail());
+        phone.setText(CurrentUser.userConnected.getUserPhone());
+
+
     }
 }

@@ -24,7 +24,7 @@ public class ProductElement extends VBox {
     private HashMap<String, Value> hmVal;
     public ProductElement(Value value){
 
-        this.getClass().getResource("@css/productElementcss.css").toExternalForm();
+        //this.getClass().getResource("@css/productElementcss.css").toExternalForm();
         this.getStyleClass().add("product-Element");
 
         Label nomValeur = new Label();

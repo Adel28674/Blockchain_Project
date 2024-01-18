@@ -2,6 +2,7 @@ package com.example.blockchain.modele;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.*;
 
@@ -28,11 +29,30 @@ public class Investor extends UserInfo implements Serializable {
     public void createWallet() {
         Wallet newWallet = new Wallet(this);
         wallets.put(newWallet.getToken(), newWallet);
+        try {
+            ConnectionToDB.StockWalletInDatabase(this);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void removeWallet(UUID id) {
+        wallets.remove(id);
+        try {
+            ConnectionToDB.StockWalletInDatabase(this);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public UUID createWalletAndReturnID() {
         Wallet newWallet = new Wallet(this);
         wallets.put(newWallet.getToken(), newWallet);
+        try {
+            ConnectionToDB.StockWalletInDatabase(this);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         return newWallet.getToken();
     }
 
@@ -49,11 +69,13 @@ public class Investor extends UserInfo implements Serializable {
         wallets.get(parIdWallet).addCapital(parCapital);
     }
 
-    public void cloneWallet(Wallet wallet) {
-        Wallet wal = new Wallet(this);
-        wal.setCapital(wallet.getCapital());
-        wal.listValues = wallet.listValues;
-        this.wallets.put(wal.getToken(), wal);
+    public void cloneWallet(UUID uuid) {
+        Wallet walletCloning = wallets.get(uuid);
+        UUID id = createWalletAndReturnID();
+        Wallet walletCloned = wallets.get(id);
+        walletCloned.setCapital(walletCloning.getCapital());
+        walletCloned.listValues = walletCloning.listValues;
+        this.wallets.put(walletCloned.getToken(), walletCloned);
     }
 
     public void buyValueWithCapital(Wallet wallet, Value value) {
@@ -162,7 +184,7 @@ public class Investor extends UserInfo implements Serializable {
         }
         UUID uuid = investor.createWalletAndReturnID();
         investor.addCapital(uuid, 500.00);
-        investor.cloneWallet(investor.wallets.get(uuid));
+        //investor.cloneWallet(investor.wallets.get(uuid));
         System.out.println(investor.wallets.toString());
 
         try {

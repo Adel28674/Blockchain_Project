@@ -2,6 +2,7 @@ package com.example.blockchain;
 
 import com.example.blockchain.Controller.MarketController;
 import com.example.blockchain.Controller.ProfilPageController;
+import com.example.blockchain.Controller.WalletManagerController;
 import com.example.blockchain.modele.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -309,6 +310,9 @@ public class AccueilPage implements Initializable {
         Stage stage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("wallet-manager.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 900, 600);
+        scene.getStylesheets().add(getClass().getResource("/com/example/blockchain/css/walletboxcss.css").toExternalForm());
+        WalletManagerController walCon = fxmlLoader.getController();
+        walCon.setData();
 
         stage.setTitle("Wallet Manager!");
         stage.setScene(scene);
@@ -342,7 +346,7 @@ public class AccueilPage implements Initializable {
         Stage stage1 = new Stage();
 
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("profil-page.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        Scene scene = new Scene(fxmlLoader.load(), 1000, 600);
 
         ProfilPageController p = fxmlLoader.getController();
         p.setData();

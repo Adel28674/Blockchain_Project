@@ -251,6 +251,32 @@ public class ConnectionToDB {
     }
 
 
+    public static boolean changePassword(String login, String mdp) throws SQLException {
+
+        com.example.blockchain.modele.ConnectionToDB.connect();
+        if (existsWallet(login)){
+            String requete = "UPDATE User SET userMDP = ? WHERE userLogin = ?";
+
+            try (PreparedStatement preparedStatement = con.prepareStatement(requete)){
+                preparedStatement.setString(1, mdp);
+                preparedStatement.setString(2, login);
+
+                int lignesModifiees = preparedStatement.executeUpdate();
+
+                if (lignesModifiees > 0) {
+                    System.out.println("Modification réussie !");
+                    return true;
+                } else {
+                    System.out.println("Échec de la modification !");
+                }
+                return false;
+            }
+
+        }
+        return false;
+    }
+
+
 
 
 }

@@ -1,51 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.text.Text?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.blockchain.Controller.ProfilPageController">
 
     <BorderPane prefHeight="616.0" prefWidth="1000.0" xmlns:fx="http://javafx.com/fxml/1">
     <left>
         <VBox spacing="10">
-            <Button fx:id="btnSidebarAccueil" onAction="#onbtnSidebarAccueilClicked" text="Accueil" />
-            <Button fx:id="btnSidebarWalletManager" onAction="#onbtnSidebarWalletManagerClicked" text="Wallet Manager" />
-            <Button fx:id="btnSidebaMarket" mnemonicParsing="false" onAction="#onbtnSidebaMarketClicked" text="Market" />
-            <Button fx:id="btnSidebaProfile" mnemonicParsing="false" text="Profil" />
-            <!-- Ajouter d'autres boutons si nécessaire -->
+            <VBox prefHeight="1000" prefWidth="109.0" spacing="10" style="-fx-background-color: #616161;" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
+                <children>
+                    <Button fx:id="btnSidebarAccueil" mnemonicParsing="false" onAction="#onbtnSidebarAccueilClicked" prefHeight="30.0" prefWidth="109.0" style="-fx-background-color: #0277bd;" text="Acceuil" textFill="WHITE">
+                        <font>
+                            <Font name="Tahoma Bold" size="12.0" />
+                        </font>
+                    </Button>
+                    <Button fx:id="btnSidebarWalletManager" mnemonicParsing="false" onAction="#onbtnSidebarWalletManagerClicked" prefHeight="30.0" prefWidth="111.0" style="-fx-background-color: #0288d1;" text="Wallet Manager" textFill="WHITE">
+                        <font>
+                            <Font name="System Bold" size="12.0" />
+                        </font>
+                    </Button>
+                    <Button fx:id="btnSidebaMarket" mnemonicParsing="false" onAction="#onbtnSidebaMarketClicked" prefHeight="30.0" prefWidth="109.0" style="-fx-background-color: #039be5;" text="Market" textFill="WHITE">
+                        <font>
+                            <Font name="System Bold" size="12.0" />
+                        </font>
+                    </Button>
+                    <Button fx:id="btnSidebaProfile" mnemonicParsing="false" onAction="#onbtnProfileClicked" prefHeight="30.0" prefWidth="109.0" style="-fx-background-color: #03a9f4;" text="Profil" textFill="WHITE">
+                        <font>
+                            <Font name="Tahoma Bold" size="12.0" />
+                        </font>
+                    </Button>
+                </children>
+            </VBox>
         </VBox>
     </left>
+        <top>
+            <Label alignment="CENTER" prefHeight="26.0" prefWidth="1002.0" style="-fx-background-color: #01579b;" text="Profil" textFill="WHITE">
+                <font>
+                    <Font name="Tahoma Bold" size="13.0" />
+                </font>
+            </Label>
+        </top>
       <center>
-          <AnchorPane prefHeight="546.0" prefWidth="412.0" >
-              <children>
-                  <VBox alignment="TOP_CENTER" prefHeight="546.0" prefWidth="489.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                      <children>
-                          <Label prefHeight="26.0" prefWidth="140.0" text="User Profile" />
-                          <VBox prefHeight="472.0" prefWidth="252.0">
-                              <children>
+            <VBox alignment="TOP_CENTER" prefHeight="546.0" prefWidth="489.0" BorderPane.alignment="CENTER">
+                <children>
+                    <Label prefHeight="26.0" prefWidth="140.0" text="User Profile" />
+                    <VBox prefHeight="188.0" prefWidth="730.0">
+                        <children>
 
-                                  <Label text="Full Name" />
-                                  <TextField fx:id="name_field" style="-fx-border-width: 2px;" editable="true"/>
+                            <Label text="Full Name" />
+                            <TextField fx:id="name_field" editable="true" style="-fx-border-width: 2px;" />
 
-                                  <Label text="Email" />
-                                  <TextField fx:id="mail_field" style="-fx-border-width: 2px;" editable="true"/>
+                            <Label text="Email" />
+                            <TextField fx:id="mail_field" editable="true" style="-fx-border-width: 2px;" />
 
-                                  <Label text="Phone Number " />
-                                  <TextField fx:id="phone_field" style="-fx-border-width: 2px;" editable="true"/>
+                            <Label text="Phone Number " />
+                            <TextField fx:id="phone_field" editable="true" style="-fx-border-width: 2px;" />
 
-                                  <Button fx:id="editProfile" onAction="#btn_EditProfileClicked" text="Edit Profile" />
-                                  <Button fx:id="changePassword" onAction="#btn_ChangePasswordClicked" text="Change Password" />
-                              </children>
-                          </VBox>
-                      </children>
-                      <padding>
-                          <Insets left="80.0" right="80.0" />
-                      </padding>
-                  </VBox>
-              </children>
-          </AnchorPane>
-
+                            <Button fx:id="editProfile" onAction="#btn_EditProfileClicked" text="Edit Profile" />
+                        </children>
+                    </VBox>
+               <HBox prefHeight="295.0" prefWidth="730.0">
+                  <children>
+                     <VBox alignment="CENTER" prefHeight="295.0" prefWidth="345.0">
+                           <children>
+                           <Label text="Full Name :" />
+                           <Label text="Email" />
+                           <Label text="Phone number" />
+                           <Label text="Mot de passe" />
+                        </children>
+                     </VBox>
+                     <VBox alignment="CENTER" prefHeight="295.0" prefWidth="391.0">
+                        <children>
+                           <Label fx:id="name" />
+                           <Label fx:id="mail" />
+                           <Label fx:id="phone" />
+                           <Button fx:id="changePassword" mnemonicParsing="false" onAction="#btn_ChangePasswordClicked" text="Changer mon mot de passe" />
+                        </children>
+                     </VBox>
+                  </children>
+               </HBox>
+           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                  <children>
+                      <AnchorPane layoutX="3.0" layoutY="191.0" prefHeight="663.0" prefWidth="698.0" />
+                           </children>
+               </AnchorPane>
+                </children>
+                <padding>
+                    <Insets left="80.0" right="80.0" />
+                </padding>
+            </VBox>
       </center>
     </BorderPane>
 </AnchorPane>
