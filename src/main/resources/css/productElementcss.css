@@ -1,0 +1,47 @@
+.main-container {
+    -fx-padding: 10px;
+    -fx-background-color: #f0f0f0;
+}
+
+.product-Element {
+    -fx-padding: 10px;
+    -fx-border-color: #d0d0d0;
+    -fx-border-width: 2px;
+    -fx-background-color: #ffffff;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+
+.product-element-name {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.product-element-price {
+    -fx-font-size: 14px;
+}
+
+
+.button {
+    -fx-background-color: #007bff;
+    -fx-text-fill: white;
+}
+
+.label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.text-field {
+    -fx-border-color: #ced4da;
+    -fx-padding: 5px;
+}
+
+.tab-pane .tab-header-background {
+    -fx-background-color: lightgray;
+}
+
+.combo-box {
+    -fx-background-color: white;
+}

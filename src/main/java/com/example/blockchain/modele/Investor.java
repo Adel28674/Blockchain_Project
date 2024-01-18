@@ -75,6 +75,35 @@ public class Investor extends UserInfo implements Serializable {
         }
     }
 
+    public void buyValueWithCrypto(Wallet wallet, Cryptocurrency crypto, Value value) {
+        try{
+            Double price = value.getPrice();
+            float quantity = value.getQuantity();
+            Double cryptoCapital = crypto.getPrice()* crypto.getQuantity();
+            if (cryptoCapital > price * quantity) {
+                if (wallet.listValues.containsKey(value.getSymbol())) {
+                    Value val = wallet.listValues.get(value.getSymbol());
+                    val.setQuantity(val.getQuantity() + value.getQuantity());
+                    Double quantitySpend = cryptoCapital / price*quantity;
+                    wallet.listValues.get(crypto.getSymbol()).setQuantity(Float.valueOf((float) (crypto.getQuantity()*quantitySpend)));
+                } else {
+                    Double quantitySpend = cryptoCapital / price*quantity;
+                    wallet.listValues.put(value.getSymbol(), value);
+                    wallet.listValues.get(crypto.getSymbol()).setQuantity(Float.valueOf((float) (crypto.getQuantity()*quantitySpend)));
+                }
+            } else if (cryptoCapital == price * quantity) {
+                crypto.setQuantity(0);
+                wallet.listValues.put(crypto.getSymbol(), crypto);
+                Value val = wallet.listValues.get(value.getSymbol());
+                val.setQuantity(val.getQuantity() + value.getQuantity());
+                wallet.listValues.put(val.getSymbol(), val);
+
+            }
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+
 
     public void sellValue(Wallet wallet, Value value) throws IOException {
 

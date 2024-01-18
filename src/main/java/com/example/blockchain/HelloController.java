@@ -91,7 +91,6 @@ public class HelloController {
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();
-
         Stage st = (Stage) btn_login.getScene().getWindow();
         st.close();
 

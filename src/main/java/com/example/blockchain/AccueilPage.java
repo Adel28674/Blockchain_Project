@@ -1,5 +1,6 @@
 package com.example.blockchain;
 
+import com.example.blockchain.Controller.MarketController;
 import com.example.blockchain.modele.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -87,6 +88,8 @@ public class AccueilPage implements Initializable {
 
     private static ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 
+    private Timeline timeline;
+
 
 
     public void onBtnClickChartInitializer() throws IOException {
@@ -109,7 +112,7 @@ public class AccueilPage implements Initializable {
         lineChartWallet.getData().add(series);
 
 
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
+        timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
 
             String selectedValue = comboBoxWallets.getValue();
             if (selectedValue != null) {
@@ -307,18 +310,56 @@ public class AccueilPage implements Initializable {
     }
 
     public void onbtnSidebaMarketClicked() throws IOException {
-        Stage stage = (Stage) btnSidebarAccueil.getScene().getWindow();
-        stage.close();
+
+        stopGetCryptoRealTime();
+        timeline.stop();
 
         Stage stage1 = new Stage();
 
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("market.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        MarketController m = fxmlLoader.getController();
+        m.setData();
 
         stage1.setTitle("Market!");
         stage1.setScene(scene);
         stage1.show();
+        Stage stage = (Stage) btnSidebarAccueil.getScene().getWindow();
+        stage.close();
     }
+
+    public void onbtnProfileClicked() throws IOException {
+
+        stopGetCryptoRealTime();
+        timeline.stop();
+
+        Stage stage1 = new Stage();
+
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("profil-page.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+
+
+        stage1.setTitle("Votre Profil!");
+        stage1.setScene(scene);
+        stage1.show();
+        Stage stage = (Stage) btnSidebarAccueil.getScene().getWindow();
+        stage.close();
+    }
+
+    public static void stopGetCryptoRealTime() {
+        if (scheduler != null) {
+            scheduler.shutdown();
+            try {
+                scheduler.awaitTermination(5, TimeUnit.SECONDS);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+            scheduler = Executors.newScheduledThreadPool(1);
+            System.out.println("Planificateur arrêté.");
+        }
+    }
+
+
 
 
 

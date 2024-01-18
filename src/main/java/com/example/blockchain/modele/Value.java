@@ -17,6 +17,7 @@ public class Value implements Serializable {
 
     public Value(String currencyName, Double price, String symbol, float quantity) {
         this.name = currencyName;
+        System.out.println(currencyName);
         this.price = price;
         this.symbol = symbol;
         this.quantity = quantity;

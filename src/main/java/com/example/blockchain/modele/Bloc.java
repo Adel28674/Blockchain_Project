@@ -19,7 +19,7 @@ public class Bloc {
     }
 
     public Bloc add(Transaction par){
-        if (transactionArrayList.size()<10){
+        if (transactionArrayList.size()<5){
             transactionArrayList.add(par);
             System.out.println("AJOUT d'une nouvelle TRANSAC");
             return this;

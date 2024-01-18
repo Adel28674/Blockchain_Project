@@ -23,4 +23,8 @@ public class Stocking extends Value{
     public Double getPrice() throws IOException {
         return super.getPrice();
     }
+
+    public String getName(){
+        return super.getName();
+    }
 }
