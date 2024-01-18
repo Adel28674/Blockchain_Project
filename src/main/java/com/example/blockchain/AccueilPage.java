@@ -1,6 +1,7 @@
 package com.example.blockchain;
 
 import com.example.blockchain.Controller.MarketController;
+import com.example.blockchain.Controller.ProfilPageController;
 import com.example.blockchain.modele.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -338,6 +339,8 @@ public class AccueilPage implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("profil-page.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 800, 600);
 
+        ProfilPageController p = fxmlLoader.getController();
+        p.setData();
 
         stage1.setTitle("Votre Profil!");
         stage1.setScene(scene);

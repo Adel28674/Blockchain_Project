@@ -221,6 +221,36 @@ public class ConnectionToDB {
     }
 
 
+    public static boolean UpdateInformation(String username, String name, String mail, String phone) throws SQLException {
+
+        com.example.blockchain.modele.ConnectionToDB.connect();
+        if (existsWallet(username)){
+            String requete = "UPDATE User SET userName = ?, userMail = ?, userPhone=? WHERE userLogin = ?";
+
+            try (PreparedStatement preparedStatement = con.prepareStatement(requete)){
+                preparedStatement.setString(1, name);
+                preparedStatement.setString(2, mail);
+                preparedStatement.setString(3, phone);
+                preparedStatement.setString(4, username);
+
+
+
+                int lignesModifiees = preparedStatement.executeUpdate();
+
+                if (lignesModifiees > 0) {
+                    System.out.println("Modification réussie !");
+                    return true;
+                } else {
+                    System.out.println("Échec de la modification !");
+                }
+                return false;
+            }
+
+        }
+        return false;
+    }
+
+
 
 
 }

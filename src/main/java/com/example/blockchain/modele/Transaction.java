@@ -11,7 +11,7 @@ public class Transaction {
     protected Value value;
     protected Boolean payed;
 
-    public Transaction(Wallet originWallet, Value value, int isepCoins) {
+    public Transaction(Wallet originWallet, Value value) {
         this.wallet = originWallet;
         this.timestamp = System.currentTimeMillis();
         this.value = value;

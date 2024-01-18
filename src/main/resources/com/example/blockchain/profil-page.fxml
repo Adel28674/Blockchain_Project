@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
@@ -18,29 +17,35 @@
         </VBox>
     </left>
       <center>
-          <VBox alignment="CENTER" spacing="20" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
-              <Text text="Profil Utilisateur" />
+          <AnchorPane prefHeight="546.0" prefWidth="412.0" >
+              <children>
+                  <VBox alignment="TOP_CENTER" prefHeight="546.0" prefWidth="489.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                      <children>
+                          <Label prefHeight="26.0" prefWidth="140.0" text="User Profile" />
+                          <VBox prefHeight="472.0" prefWidth="252.0">
+                              <children>
 
-              <GridPane hgap="10" vgap="10">
-                  <padding>
-                      <Insets top="20" right="20" bottom="20" left="20"/>
-                  </padding>
+                                  <Label text="Full Name" />
+                                  <TextField fx:id="name_field" style="-fx-border-width: 2px;" editable="true"/>
 
-                  <!-- Nom d'utilisateur -->
-                  <Label text="Nom d'utilisateur:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-                  <TextField fx:id="usernameField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                                  <Label text="Email" />
+                                  <TextField fx:id="mail_field" style="-fx-border-width: 2px;" editable="true"/>
 
-                  <!-- Email -->
-                  <Label text="Email:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-                  <TextField fx:id="emailField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
-              </GridPane>
+                                  <Label text="Phone Number " />
+                                  <TextField fx:id="phone_field" style="-fx-border-width: 2px;" editable="true"/>
 
-              <!-- Boutons -->
-              <HBox spacing="10">
-                  <Button text="Mettre à jour" fx:id="updateButton"/>
-                  <Button text="Annuler" fx:id="cancelButton"/>
-              </HBox>
-          </VBox>
+                                  <Button fx:id="editProfile" onAction="#btn_EditProfileClicked" text="Edit Profile" />
+                                  <Button fx:id="changePassword" onAction="#btn_ChangePasswordClicked" text="Change Password" />
+                              </children>
+                          </VBox>
+                      </children>
+                      <padding>
+                          <Insets left="80.0" right="80.0" />
+                      </padding>
+                  </VBox>
+              </children>
+          </AnchorPane>
+
       </center>
     </BorderPane>
 </AnchorPane>
