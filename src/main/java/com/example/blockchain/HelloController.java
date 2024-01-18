@@ -4,10 +4,6 @@ import com.example.blockchain.modele.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.LineChart;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -15,11 +11,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.util.Date;
 import java.util.List;
 
-import static com.example.blockchain.AccueilPage.json;
 import static com.example.blockchain.modele.ConnectionToDB.getWalletsFromDatabase;
 
 public class HelloController {
@@ -65,8 +58,9 @@ public class HelloController {
             System.out.println(CurrentUser.userConnected.getWallets().toString());
             Stage stage = new Stage() ;
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("accueilPage.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+            Scene scene = new Scene(fxmlLoader.load(), 1000, 800);
             AccueilPage accueilPage = fxmlLoader.getController();
+            accueilPage.getClass().getResource("/com/example/blockchain/css/accueilcss.css").toExternalForm();
             stage.setTitle("Hello!");
             stage.setScene(scene);
             stage.show();

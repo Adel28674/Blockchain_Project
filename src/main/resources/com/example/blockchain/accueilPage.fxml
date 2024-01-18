@@ -1,17 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
+<?import java.net.*?>
 <?import javafx.collections.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.chart.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.blockchain.AccueilPage">
-    <BorderPane prefHeight="616.0" prefWidth="1000.0" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="800" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.blockchain.AccueilPage">
+    <stylesheets>
+        <URL value="@css/accueilcss.css" />
+    </stylesheets>
+
+
+
+
+    <BorderPane prefHeight="800" prefWidth="1200">
+        <top>
+            <HBox prefWidth="2000" style="-fx-background-color: #01579b;" alignment="CENTER_RIGHT">
+
+                <ComboBox id="combobox" fx:id="comboBoxWallets" prefHeight="14.0" prefWidth="90.0" promptText="--Choose your Wallet--" style="-fx-background-color: #0277bd;">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="Item 1" />
+                            <String fx:value="Item 2" />
+                            <String fx:value="Item 3" />
+                        </FXCollections>
+                    </items>
+                </ComboBox>
+
+                <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="614.0" layoutY="5.0">
+                    <image>
+                        <Image url="@pic/user (1).png" />
+                    </image>
+                </ImageView>
+                <Label fx:id="username" ellipsisString="" layoutX="483.0" layoutY="13.0" textFill="#e0e0e0">
+                    <font>
+                        <Font name="Tahoma Bold" size="14.0" />
+                    </font>
+                </Label>
+
+
+            </HBox>
+        </top>
         <left>
-            <VBox layoutX="-2.0" layoutY="41.0" prefHeight="398.0" prefWidth="109.0" spacing="10" style="-fx-background-color: #616161;">
+            <VBox prefHeight="1000" prefWidth="109.0" spacing="10" style="-fx-background-color: #616161;" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
                 <children>
                     <Button fx:id="btnSidebarAccueil" mnemonicParsing="false" onAction="#onbtnSidebarAccueilClicked" prefHeight="30.0" prefWidth="109.0" style="-fx-background-color: #0277bd;" text="Acceuil" textFill="WHITE">
                         <font>
@@ -39,38 +75,74 @@
         <center>
             <HBox prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                 <children>
-                    <VBox alignment="CENTER" prefHeight="400.0" prefWidth="212.0" spacing="20.0">
-                        <Label fx:id="WalletValue" text="0">AAAAA</Label>
-                  <HBox alignment="CENTER" onMouseClicked="#onBitcoinLabelClicked" prefHeight="20.0" prefWidth="30.0">
+                    <VBox alignment="TOP_CENTER" prefHeight="2500" prefWidth="156.0" spacing="20.0" style="-fx-background-color: #424242;">
+
+                        <Label prefHeight="18.0" prefWidth="101.0" text="Total Balance" textFill="#e0e0e0">
+                            <font>
+                                <Font name="Tahoma Bold" size="14.0" />
+                            </font>
+                        </Label>
+
+                        <Label fx:id="WalletValue" styleClass="label" text="0">AAAAA</Label>
+
+                        <AnchorPane layoutX="10.0" layoutY="58.0" prefHeight="2.0" prefWidth="129.0" style="-fx-background-color: #ffffff;" />
+
+                        <HBox alignment="CENTER" onMouseClicked="#onBitcoinLabelClicked" prefHeight="20.0" prefWidth="30.0" spacing="10">
                      <children>
-                              <Label text="Bitcoin : ">AAAAA</Label>
+                         <ImageView fitHeight="20.0" fitWidth="20.0">
+                             <image>
+                                 <Image url="@pic/1.png" />
+                             </image>
+                         </ImageView>
+                         <Label styleClass="label" text="Bitcoin : ">AAAAA</Label>
                         <Label fx:id="bitcoinChange" text="0" />
                      </children>
                   </HBox>
-                        <HBox alignment="CENTER" onMouseClicked="#onEthLabelClicked" prefHeight="20.0" prefWidth="30.0">
+                        <HBox alignment="CENTER" onMouseClicked="#onEthLabelClicked" prefHeight="20.0" prefWidth="30.0" spacing="10">
                      <children>
-                              <Label text="Etherum : ">AAAAA</Label>
-                        <Label fx:id="EthChange" text="0" />
+                         <ImageView fitHeight="20.0" fitWidth="20.0">
+                             <image>
+                                 <Image url="@pic/2.png" />
+                             </image>
+                         </ImageView>
+                         <Label text="Etherum : ">AAAAA</Label>
+                        <Label fx:id="EthChange" styleClass="label" text="0" />
                      </children>
                   </HBox>
-                        <HBox alignment="CENTER" onMouseClicked="#onLtcLabelClicked" prefHeight="20.0" prefWidth="30.0">
+                        <HBox alignment="CENTER" onMouseClicked="#onLtcLabelClicked" prefHeight="20.0" prefWidth="30.0" spacing="10">
                      <children>
+                         <ImageView fitHeight="20.0" fitWidth="20.0">
+                             <image>
+                                 <Image url="@pic/3.png" />
+                             </image>
+                         </ImageView>
                               <Label text="LITECOIN :">AAAAA</Label>
-                        <Label fx:id="LtcChange" text="0" />
+                        <Label fx:id="LtcChange" styleClass="label" text="0" />
                      </children>
                   </HBox>
-                        <HBox alignment="CENTER" onMouseClicked="#onNeoLabelClicked" prefHeight="20.0" prefWidth="30.0">
+                        <HBox alignment="CENTER" onMouseClicked="#onNeoLabelClicked" prefHeight="20.0" prefWidth="30.0" spacing="10">
                      <children>
+                         <ImageView fitHeight="20.0" fitWidth="20.0">
+                             <image>
+                                 <Image url="@pic/4.png" />
+                             </image>
+                         </ImageView>
                               <Label text="NEO : ">AAAAA</Label>
-                        <Label fx:id="neoChange" text="0" />
+                        <Label fx:id="neoChange" styleClass="label" text="0" />
                      </children>
                   </HBox>
-                        <HBox alignment="CENTER" onMouseClicked="#onBnbLabelClicked" prefHeight="20.0" prefWidth="30.0">
+                        <HBox alignment="CENTER" onMouseClicked="#onBnbLabelClicked" prefHeight="20.0" prefWidth="30.0" spacing="10">
                      <children>
+                         <ImageView fitHeight="20.0" fitWidth="20.0">
+                             <image>
+                                 <Image url="@pic/5.png" />
+                             </image>
+                         </ImageView>
                               <Label text="BNB : ">AAAAA</Label>
-                        <Label fx:id="bnbChange" text="0" />
+                        <Label fx:id="bnbChange" styleClass="label" text="0" />
                      </children>
                   </HBox>
+
                     </VBox>
 
 
@@ -82,15 +154,6 @@
                         <children>
                      <VBox prefHeight="527.0" prefWidth="560.0">
                         <children>
-                           <ComboBox id="combobox" fx:id="comboBoxWallets" prefWidth="150.0">
-                               <items>
-                                   <FXCollections fx:factory="observableArrayList">
-                                       <String fx:value="Item 1" />
-                                       <String fx:value="Item 2" />
-                                       <String fx:value="Item 3" />
-                                   </FXCollections>
-                               </items>
-                           </ComboBox>
                                 <StackPane fx:id="chartContainer">
                               <children>
                                  <LineChart fx:id="lineChartWallet">

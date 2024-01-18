@@ -80,6 +80,9 @@ public class AccueilPage implements Initializable {
     @FXML
     public Button btnSidebaProfile;
 
+    @FXML
+    private Label username;
+
 
     public Double previousValue = 0.0;
 
@@ -104,6 +107,8 @@ public class AccueilPage implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        username.setText(CurrentUser.userConnected.getUserLogin());
 
         XYChart.Series<String, Number> series = new XYChart.Series<>();
         series.setName("Données en temps réel");
