@@ -10,11 +10,14 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import static com.example.blockchain.modele.Blockchain.blocs;
+import static com.example.blockchain.modele.Blockchain.genesis;
 import static com.example.blockchain.modele.ChartCalculationStock.graphique;
 
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
+        blocs.add(genesis);
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 800, 600);
         stage.setTitle("Hello!");

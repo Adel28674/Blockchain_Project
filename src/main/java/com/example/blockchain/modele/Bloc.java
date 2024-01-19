@@ -19,21 +19,9 @@ public class Bloc {
         blocHash = Arrays.hashCode(contens);
     }
 
-    public Bloc add(Transaction par){
-        if (transactionArrayList.size()<5){
-            transactionArrayList.add(par);
-            System.out.println("AJOUT d'une nouvelle TRANSAC");
-            return this;
-        } else if (transactionArrayList.size()==10) {
-            System.out.println("AJOUT d'un nouveau BLOC");
-            processTransaction();
-            ArrayList<Transaction> ar = new ArrayList<>();
-            ar.add(par);
-            Bloc b = new Bloc(ar, this.getBlocHash());
-            return b;
-        }
 
-        return new Bloc(new ArrayList<>(), this.getBlocHash());
+    public boolean limitBlock(){
+        return transactionArrayList.size()>=3 ? true:false;
     }
 
     @Override

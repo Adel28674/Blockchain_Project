@@ -2,10 +2,7 @@ package com.example.blockchain.View;
 
 import com.example.blockchain.Controller.WalletManagerController;
 import com.example.blockchain.HelloApplication;
-import com.example.blockchain.modele.Value;
-import com.example.blockchain.modele.Wallet;
-import com.example.blockchain.modele.WalletChart;
-import com.example.blockchain.modele.pieChartWalletRepartition;
+import com.example.blockchain.modele.*;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
@@ -20,6 +18,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import java.io.IOException;
 
@@ -100,14 +99,13 @@ public class WalletBox extends VBox {
                 TableColumn<Value, Float> quantityColumn = new TableColumn<>("Quantity");
                 quantityColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getQuantity()));
 
-
-
-
+                TableColumn<Value, Void> actionColumn = addButtonToTable(wallet);
 
                 tableView.getColumns().add(nameColumn);
                 tableView.getColumns().add(symbolColumn);
                 tableView.getColumns().add(priceColumn);
                 tableView.getColumns().add(quantityColumn);
+                tableView.getColumns().add(actionColumn);
 
                 tableView.setItems(valeurs);
 
@@ -164,6 +162,44 @@ public class WalletBox extends VBox {
 
     public Double calculRetraite(Double patrimoine){
         return patrimoine*0.347791548;
+    }
+
+    private TableColumn<Value,Void> addButtonToTable(Wallet wallet) {
+        TableColumn<Value, Void> colBtn = new TableColumn("Button Column");
+
+        Callback<TableColumn<Value, Void>, TableCell<Value, Void>> cellFactory = new Callback<TableColumn<Value, Void>, TableCell<Value, Void>>() {
+            @Override
+            public TableCell<Value, Void> call(final TableColumn<Value, Void> param) {
+                final TableCell<Value, Void> cell = new TableCell<Value, Void>() {
+
+                    private final Button btn = new Button("Sell");
+
+                    {
+                        btn.setOnAction((ActionEvent event) -> {
+                            Value v = getTableView().getItems().get(getIndex());
+                            Transaction transaction = new TransactionSell(wallet, v);
+                            Blockchain.addTransaction(transaction);
+
+                            System.out.println("selectedValue: " + v);
+                        });
+                    }
+
+                    @Override
+                    public void updateItem(Void item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                        } else {
+                            setGraphic(btn);
+                        }
+                    }
+                };
+                return cell;
+            }
+        };
+
+        colBtn.setCellFactory(cellFactory);
+        return colBtn;
     }
 
 

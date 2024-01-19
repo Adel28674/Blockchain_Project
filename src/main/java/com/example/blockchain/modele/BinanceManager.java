@@ -33,7 +33,6 @@ public class BinanceManager {
 
         try{
             URLConnection yc = url.openConnection();
-            System.out.println("Connected to Binance API");
 
             in = new BufferedReader(
                     new InputStreamReader(
@@ -68,7 +67,6 @@ public class BinanceManager {
 
         try{
             URLConnection yc = url.openConnection();
-            System.out.println("Connected to Binance API");
 
             in = new BufferedReader(
                     new InputStreamReader(
@@ -104,7 +102,6 @@ public class BinanceManager {
 
         try{
             URLConnection yc = url.openConnection();
-            System.out.println("Connected to Binance API");
 
             in = new BufferedReader(
                     new InputStreamReader(
@@ -140,7 +137,6 @@ public class BinanceManager {
 
         try{
             URLConnection yc = url.openConnection();
-            System.out.println("Connected to Binance API");
 
             in = new BufferedReader(
                     new InputStreamReader(

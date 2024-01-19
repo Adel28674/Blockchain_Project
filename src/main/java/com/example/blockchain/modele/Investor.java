@@ -138,11 +138,12 @@ public class Investor extends UserInfo implements Serializable {
 
     public void sellValue(Wallet wallet, Value value) throws IOException {
 
-        if (wallet.listValues.containsKey(value.getSymbol())) {
+        if (wallet.listValues.containsKey(value.getSymbol()) && (!(value.getQuantity() ==0))) {
             Value val = wallet.listValues.get(value.getSymbol());
             if (val.getQuantity() >= value.getQuantity()) {
-                val.setQuantity(val.getQuantity() - value.getQuantity());
                 wallet.setCapital(wallet.getCapital() + (value.getPrice() * value.getQuantity()));
+                val.setQuantity(val.getQuantity() - value.getQuantity());
+
             }
 
         }

@@ -1,9 +1,6 @@
 package com.example.blockchain.View;
 
-import com.example.blockchain.modele.Cryptocurrency;
-import com.example.blockchain.modele.CurrentUser;
-import com.example.blockchain.modele.Value;
-import com.example.blockchain.modele.Wallet;
+import com.example.blockchain.modele.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -171,19 +168,18 @@ public class ProductElement extends VBox {
 
                             chosenWallet1 = CurrentUser.userConnected.getWallets().get(UUID.fromString((String) comboBox1.getValue()));
 
-                            CurrentUser.userConnected.buyValueWithCapital(chosenWallet1, value);
-                            System.out.println("Paiement avec Capital" );
+                            Transaction transaction1 = new Transaction(chosenWallet1, value);
+                            Blockchain.addTransaction(transaction1);
+
                         } else if (selectedTab == tab2 && comboBoxWallets2.getValue() != null
                                     && comboBoxcrypto != null
                                     &&  chosenCrypto instanceof Cryptocurrency
                         ) {
                             value.setQuantity(Float.valueOf(quantity2.getText()));
-
                             chosenWallet2 = CurrentUser.userConnected.getWallets().get(comboBoxWallets2.getValue());
 
-
-                            CurrentUser.userConnected.buyValueWithCrypto(chosenWallet2, chosenCrypto,value);
-                            System.out.println("Paiement avec crypto: " + chosenCrypto.getName());
+                            Transaction transaction = new TransactionPayedCrypto(chosenWallet2,value,chosenCrypto );
+                            Blockchain.addTransaction(transaction);
                         }
                     }
                     if (response == ButtonType.CANCEL){
