@@ -33,10 +33,9 @@ public class Transaction {
     }
 
     public Boolean pay(){
-        if (true){
-            wallet.getOwner().buyValueWithCapital(wallet, value);
+        if (wallet.getOwner().buyValueWithCapital(wallet, value)){
+
             payed = true;
-            //this.toString();
             System.out.println("PAIEMENT ACCEPTé");
             return true;
         }

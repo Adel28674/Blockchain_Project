@@ -21,6 +21,7 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 
 import java.io.IOException;
+import java.util.UUID;
 
 public class WalletBox extends VBox {
 
@@ -176,11 +177,22 @@ public class WalletBox extends VBox {
 
                     {
                         btn.setOnAction((ActionEvent event) -> {
-                            Value v = getTableView().getItems().get(getIndex());
-                            Transaction transaction = new TransactionSell(wallet, v);
-                            Blockchain.addTransaction(transaction);
+                            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                            alert.setTitle("Confirmez" );
+                            alert.setHeaderText("Etes-vous sûr de vouloire vendre cette Valeur ");
 
-                            System.out.println("selectedValue: " + v);
+                            alert.showAndWait().ifPresent(response -> {
+                                if (response == ButtonType.OK) {
+                                    Value v = getTableView().getItems().get(getIndex());
+                                    Transaction transaction = new TransactionSell(wallet, v);
+                                    Blockchain.addTransaction(transaction);
+                                    alert.close();
+                                }
+                                if (response == ButtonType.CANCEL){
+                                    alert.close();
+                                }
+                            });
+
                         });
                     }
 

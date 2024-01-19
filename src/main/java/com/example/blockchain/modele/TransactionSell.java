@@ -8,16 +8,16 @@ public class TransactionSell extends Transaction{
     }
 
     public Boolean pay(){
-        if (true){
-            try {
-                wallet.getOwner().sellValue(wallet,value); //provoque une exception
-                payed = true;
-                System.out.println("PAIEMENT ACCEPTé");
-                return true;
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-
+        boolean b = false;
+        try {
+            b= wallet.getOwner().sellValue(wallet,value);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        if (b){
+            payed = true;
+            System.out.println("PAIEMENT ACCEPTé");
+            return true;
         }
         System.out.println("Error 404 -> La transaction est un échec.  ");
         return false;

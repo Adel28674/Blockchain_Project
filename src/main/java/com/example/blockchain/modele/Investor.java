@@ -81,29 +81,34 @@ public class Investor extends UserInfo implements Serializable {
         this.wallets.put(walletCloned.getToken(), walletCloned);
     }
 
-    public void buyValueWithCapital(Wallet wallet, Value value) {
+    public Boolean buyValueWithCapital(Wallet wallet, Value value) {
         try{
             Double price = value.getPrice();
-            System.out.println("TEST DE VALIDIT2 DE LA TRANSAC" + (wallet.getCapital() >= (price * value.getQuantity())));
+            System.out.println("TEST DE VALIDIT2 DE LA TRANSAC " + (wallet.getCapital() >= (price * value.getQuantity())));
             if (wallet.getCapital() >= (price * value.getQuantity())) {
                 if (wallet.listValues.containsKey(value.getSymbol())) {
                     Value val = wallet.listValues.get(value.getSymbol());
                     val.setQuantity(val.getQuantity() + value.getQuantity());
                     wallet.setCapital(wallet.getCapital() - (price * value.getQuantity()));
+                    return true;
                 } else {
                     wallet.listValues.put(value.getSymbol(), value);
                     wallet.setCapital(wallet.getCapital() - (price * value.getQuantity()));
+                    return true;
+
                 }
             }else {
-                Alert alert = new Alert(Alert.AlertType.ERROR, "Pas assez de capital", ButtonType.CLOSE);
-                alert.showAndWait();
+                return false;
+
             }
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
+        return false;
+
     }
 
-    public void buyValueWithCrypto(Wallet wallet, Cryptocurrency crypto, Value value) {
+    public boolean buyValueWithCrypto(Wallet wallet, Cryptocurrency crypto, Value value) {
         try{
             Double price = value.getPrice();
             float quantity = value.getQuantity();
@@ -115,12 +120,14 @@ public class Investor extends UserInfo implements Serializable {
                     Double quantitySpend = price * quantity / crypto.getPrice();
                     crypto.setQuantity((float) (crypto.getQuantity() - quantitySpend));
                     wallet.listValues.put(crypto.getSymbol(), crypto);
+                    return true;
 
                 } else {
                     Double quantitySpend = price * quantity / crypto.getPrice();
                     wallet.listValues.put(value.getSymbol(), value);
                     crypto.setQuantity((float) (crypto.getQuantity() - quantitySpend));
                     wallet.listValues.put(crypto.getSymbol(), crypto);
+                    return true;
                 }
             } else if (cryptoCapital == price * quantity) {
                 crypto.setQuantity(0);
@@ -128,25 +135,27 @@ public class Investor extends UserInfo implements Serializable {
                 Value val = wallet.listValues.get(value.getSymbol());
                 val.setQuantity(val.getQuantity() + value.getQuantity());
                 wallet.listValues.put(val.getSymbol(), val);
+                return true;
 
             }
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
+        return false;
     }
 
 
-    public void sellValue(Wallet wallet, Value value) throws IOException {
+    public boolean sellValue(Wallet wallet, Value value) throws IOException {
 
         if (wallet.listValues.containsKey(value.getSymbol()) && (!(value.getQuantity() ==0))) {
             Value val = wallet.listValues.get(value.getSymbol());
-            if (val.getQuantity() >= value.getQuantity()) {
-                wallet.setCapital(wallet.getCapital() + (value.getPrice() * value.getQuantity()));
-                val.setQuantity(val.getQuantity() - value.getQuantity());
-
-            }
+            wallet.setCapital(wallet.getCapital() + (value.getPrice() * value.getQuantity()));
+            val.setQuantity(val.getQuantity() - value.getQuantity());
+            return true;
 
         }
+        System.out.println("Echec de la vente -> Peut-être qu'il n'y a pas de valeurs à vendre ");
+        return false;
     }
 
     @Override

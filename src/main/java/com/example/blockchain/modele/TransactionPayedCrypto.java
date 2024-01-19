@@ -19,8 +19,7 @@ public class TransactionPayedCrypto extends Transaction{
     }
 
     public Boolean pay(){
-        if (true){
-            wallet.getOwner().buyValueWithCrypto(wallet, cryptocurrencyToPay,value);
+        if (wallet.getOwner().buyValueWithCrypto(wallet, cryptocurrencyToPay,value)){
             payed = true;
             System.out.println("PAIEMENT ACCEPTé");
             return true;
