@@ -102,6 +102,8 @@ public class WalletBox extends VBox {
 
 
 
+
+
                 tableView.getColumns().add(nameColumn);
                 tableView.getColumns().add(symbolColumn);
                 tableView.getColumns().add(priceColumn);

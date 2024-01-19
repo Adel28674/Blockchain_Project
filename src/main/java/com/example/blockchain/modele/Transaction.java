@@ -2,6 +2,7 @@ package com.example.blockchain.modele;
 
 
 import java.io.IOException;
+import java.util.Date;
 
 public class Transaction {
     protected final Wallet wallet;
@@ -33,7 +34,7 @@ public class Transaction {
 
     public Boolean pay(){
         if (true){
-            //payer
+            wallet.getOwner().buyValueWithCapital(wallet, value);
             payed = true;
             //this.toString();
             System.out.println("PAIEMENT ACCEPTé");
@@ -43,28 +44,11 @@ public class Transaction {
         return false;
     }
 
-    public Boolean payWithCapital() throws IOException {
-        if (this.isValidTransactionWithCapital()){
-            wallet.getOwner().buyValueWithCapital(wallet, value);
-            payed = true;
-            System.out.println("PAIEMENT ACCEPTé");
-            return true;
-        }
-        System.out.println("Error 404 -> La transaction est un échec.  ");
-        return false;
-    }
-
-    public boolean isValidTransactionWithCapital() throws IOException {
-        if (wallet.getCapital()>= (value.getPrice()* value.getQuantity())){
-            return true;
-        }
-        return  false;
-    }
 
     @Override
     public String toString() {
         return "Transaction{" +
-                wallet.getOwner() + " fait une transaction de "  + " avec " +
+                wallet.getOwner() + " fait une transaction de " + this.value.toString() + " le " + new Date(timestamp) + " , et elle est payé = " + payed + " "+
                 '}';
     }
 }

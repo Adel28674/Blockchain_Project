@@ -186,6 +186,47 @@ public class WalletManagerController {
 
     }
 
+    public void btn_addCaptitalClicked(){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Add capital");
+        alert.setHeaderText("Chose The Wallet you want");
+
+        VBox dialogPaneContent = new VBox();
+        ComboBox comboBoxWallets = new ComboBox<>();
+        comboBoxWallets.setPromptText("--Choisissez un wallet--");
+
+        TextField card = new TextField();
+        card.setPromptText("Vos codes de carte bleu");
+
+        TextField capital = new TextField();
+        capital.setPromptText("Insérez un montant");
+
+
+        comboBoxWallets.getItems().clear();
+        if (CurrentUser.userConnected.getWallets()!=null){
+            for (Map.Entry mapentry : CurrentUser.userConnected.getWallets().entrySet()) {
+                comboBoxWallets.getItems().add(String.valueOf((UUID)mapentry.getKey()));
+            }
+        }
+
+        dialogPaneContent.getChildren().addAll(comboBoxWallets, card, capital);
+
+        alert.getDialogPane().setContent(dialogPaneContent);
+
+
+        alert.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK && comboBoxWallets.getValue()!=null && capital.getText().matches("\\d+")) {
+                CurrentUser.userConnected.addCapital(UUID.fromString((String)comboBoxWallets.getValue()), Double.valueOf(capital.getText()));
+                alert.close();
+                this.refresh();
+            }
+            if (response == ButtonType.CANCEL){
+                alert.close();
+            }
+        });
+
+    }
+
     public void setData(){
         Object[] values = CurrentUser.userConnected.getWallets().keySet().toArray();
         for (int i = 0; i < values.length; i++) {

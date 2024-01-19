@@ -56,5 +56,13 @@ public class Value implements Serializable {
         this.quantity = quantity;
     }
 
-
+    @Override
+    public String toString() {
+        return "Value{" +
+                "name='" + name + '\'' +
+                ", price=" + price +
+                ", symbol='" + symbol + '\'' +
+                ", quantity=" + quantity +
+                '}';
+    }
 }

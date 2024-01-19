@@ -128,7 +128,6 @@ public class AccueilPage implements Initializable {
                     protected Double call() throws IOException {
 
                         System.out.println("La valeur sélectionnée est : " + selectedValue);
-                        CurrentUser.userConnected.addCapital(UUID.fromString(selectedValue),500.0);
                         return CurrentUser.userConnected.getWallets().get(UUID.fromString(selectedValue)).getSumValues();
                     }
 

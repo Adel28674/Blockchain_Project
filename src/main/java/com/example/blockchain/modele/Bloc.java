@@ -1,6 +1,7 @@
 package com.example.blockchain.modele;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -48,12 +49,13 @@ public class Bloc {
         int i = 0;
         System.out.println("PROCESSING ################################################");
         while(i < transactionArrayList.size()){
-            try {
-                transactionArrayList.get(i).payWithCapital();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+            transactionArrayList.get(i).pay();
             i++;
+        }
+        try {
+            ConnectionToDB.StockWalletInDatabase(CurrentUser.userConnected);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 

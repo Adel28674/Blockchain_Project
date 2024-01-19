@@ -1,4 +1,4 @@
-<?xml version="1.0"   encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -51,7 +51,12 @@
                                 <Font name="Tahoma Bold" size="12.0" />
                             </font>
                         </Button>
-                        <ComboBox prefHeight="25.0" prefWidth="200.0" promptText="Select Time Period" style="-fx-background-color: #03a9f4; -fx-background-radius: 0;" />
+
+                        <Button fx:id="btn_addCaptital" mnemonicParsing="false" onAction="#btn_addCaptitalClicked" prefHeight="25.0" prefWidth="188.0" style="-fx-background-color: #0288d1;" text="Add Capital">
+                            <font>
+                                <Font name="Tahoma Bold" size="12.0" />
+                            </font>
+                        </Button>
                     </items>
                 </ToolBar>
             </top>

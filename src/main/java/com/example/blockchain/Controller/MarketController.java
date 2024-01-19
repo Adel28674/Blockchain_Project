@@ -60,7 +60,10 @@ public class MarketController {
 
         Stage stage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("wallet-manager.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        Scene scene = new Scene(fxmlLoader.load(), 900, 600);
+        //scene.getStylesheets().add(getClass().getResource("@css/walletboxcss.css").toExternalForm());
+        WalletManagerController walCon = fxmlLoader.getController();
+        walCon.setData();
 
         stage.setTitle("Wallet Manager!");
         stage.setScene(scene);

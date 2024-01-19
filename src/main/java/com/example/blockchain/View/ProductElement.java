@@ -13,13 +13,15 @@ import javafx.scene.control.*;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 public class ProductElement extends VBox {
 
     private Cryptocurrency chosenCrypto;
 
-    private Wallet chosenWallet;
+    private Wallet chosenWallet1;
+    private Wallet chosenWallet2;
 
     private HashMap<String, Value> hmVal;
     public ProductElement(Value value){
@@ -56,6 +58,7 @@ public class ProductElement extends VBox {
 
 
                 VBox dialogPaneContentPayWithCapital = new VBox();
+                ComboBox comboBox1 = comboBoxWallets();
                 Label quantityLab = new Label("Entrez la quantité voulue");
                 TextField quantity = new TextField();
                 Label labelPrixTot = new Label();
@@ -78,10 +81,11 @@ public class ProductElement extends VBox {
                     }
                 });
 
-                dialogPaneContentPayWithCapital.getChildren().addAll(quantityLab, quantity,labelPrixTot);
+                dialogPaneContentPayWithCapital.getChildren().addAll(comboBox1,quantityLab, quantity,labelPrixTot);
                 Tab tab1 = new Tab("Capital");
                 tab1.setContent(dialogPaneContentPayWithCapital);
                 tab1.setClosable(false);
+
 
 
                 VBox dialogPaneContentPayWithCrypto = new VBox();
@@ -90,17 +94,17 @@ public class ProductElement extends VBox {
                 System.out.println(ItemsWallet.toString());
                 Label res = new Label();
 
-                ComboBox<UUID> comboBoxWallets = new ComboBox<>(ItemsWallet);
-                comboBoxWallets.setPromptText("--Choisir un Portefeuille--");
+                ComboBox<UUID> comboBoxWallets2 = new ComboBox<>(ItemsWallet);
+                comboBoxWallets2.setPromptText("--Choisir un Portefeuille--");
 
                 Label labCrypt = new Label("Veuillez d'abord selectionné le wallet à utiliser.\n Puis Choisissez la crypto que vous voulez utilisé pour payer");
                 ComboBox<String> comboBoxcrypto = new ComboBox<>();
                 comboBoxcrypto.setPromptText("--Choisir une crypto--");
 
 
-                comboBoxWallets.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+                comboBoxWallets2.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
                     if (newValue != null) {
-                        chosenWallet = CurrentUser.userConnected.getWallets().get(newValue);
+                        chosenWallet2 = CurrentUser.userConnected.getWallets().get(newValue);
                         hmVal = (CurrentUser.userConnected.getWallets().get(newValue).listValues);
                         ObservableList<String> ItemsCrypto = FXCollections.observableArrayList(hmVal.keySet());
                         comboBoxcrypto.setItems(ItemsCrypto);
@@ -140,7 +144,7 @@ public class ProductElement extends VBox {
                 });
 
 
-                dialogPaneContentPayWithCrypto.getChildren().addAll(cryptoLab, comboBoxWallets, labCrypt,comboBoxcrypto, labelErrChoseCrypto, quantity2,labelErrQuantity);
+                dialogPaneContentPayWithCrypto.getChildren().addAll(cryptoLab, comboBoxWallets2, labCrypt,comboBoxcrypto, labelErrChoseCrypto, quantity2,labelErrQuantity);
 
 
                 Tab tab2 = new Tab("Cryptocurrency");
@@ -155,17 +159,30 @@ public class ProductElement extends VBox {
 
 
                 quantity.getStyleClass().add("text-field");
-                comboBoxWallets.getStyleClass().add("combo-box");
+                comboBoxWallets2.getStyleClass().add("combo-box");
                 comboBoxcrypto.getStyleClass().add("combo-box");
 
                 alert.showAndWait().ifPresent(response -> {
                     if (response == ButtonType.OK) {
                         Tab selectedTab = tab.getSelectionModel().getSelectedItem();
-                        if (selectedTab == tab1) {
-                            String userInput = quantity.getText();
-                            System.out.println("Paiement avec capital: " + userInput);
-                        } else if (selectedTab == tab2) {
+                        if (selectedTab == tab1 && comboBox1.getValue()!=null) {
+                            System.out.println("Wallet choisi -> " + comboBox1.getValue());
+                            value.setQuantity(Float.valueOf(quantity.getText()));
 
+                            chosenWallet1 = CurrentUser.userConnected.getWallets().get(UUID.fromString((String) comboBox1.getValue()));
+
+                            CurrentUser.userConnected.buyValueWithCapital(chosenWallet1, value);
+                            System.out.println("Paiement avec Capital" );
+                        } else if (selectedTab == tab2 && comboBoxWallets2.getValue() != null
+                                    && comboBoxcrypto != null
+                                    &&  chosenCrypto instanceof Cryptocurrency
+                        ) {
+                            value.setQuantity(Float.valueOf(quantity2.getText()));
+
+                            chosenWallet2 = CurrentUser.userConnected.getWallets().get(comboBoxWallets2.getValue());
+
+
+                            CurrentUser.userConnected.buyValueWithCrypto(chosenWallet2, chosenCrypto,value);
                             System.out.println("Paiement avec crypto: " + chosenCrypto.getName());
                         }
                     }
@@ -177,6 +194,19 @@ public class ProductElement extends VBox {
 
         });
         this.getChildren().addAll(nomValeur,prixUnitaire, buyBtn);
+    }
+
+    public ComboBox comboBoxWallets(){
+        ComboBox comboBoxWallets = new ComboBox<>();
+        comboBoxWallets.setPromptText("--Choisissez un Wallet--");
+
+        comboBoxWallets.getItems().clear();
+        if (CurrentUser.userConnected.getWallets()!=null){
+            for (Map.Entry mapentry : CurrentUser.userConnected.getWallets().entrySet()) {
+                comboBoxWallets.getItems().add(String.valueOf((UUID)mapentry.getKey()));
+            }
+        }
+        return comboBoxWallets;
     }
 
 }
