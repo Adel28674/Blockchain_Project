@@ -1,0 +1,54 @@
+
+.product-Element {
+    -fx-padding: 10px;
+    -fx-background-color: #37474f;
+    -fx-border-color: #000000;
+}
+
+
+.product-element-name, .product-element-price {
+    -fx-alignment: center;
+    -fx-pref-height: 61.0;
+    -fx-pref-width: 101.0;
+    -fx-border-color: #000000;
+    -fx-font-family: 'Tahoma Bold';
+    -fx-font-size: 12.0;
+}
+
+.product-element-name{
+    -fx-text-fill: white;
+}
+
+.product-element-price {
+    -fx-text-fill: #76ff03;
+}
+
+
+.button {
+    -fx-alignment: center;
+    -fx-pref-height: 55.0;
+    -fx-pref-width: 102.0;
+    -fx-background-color: #ff3d00;
+    -fx-border-color: #000000;
+    -fx-text-fill: white;
+    -fx-font-family: 'System Bold';
+    -fx-font-size: 12.0;
+}
+
+.label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.text-field {
+    -fx-border-color: #ced4da;
+    -fx-padding: 5px;
+}
+
+.tab-pane .tab-header-background {
+    -fx-background-color: lightgray;
+}
+
+.combo-box {
+    -fx-background-color: white;
+}

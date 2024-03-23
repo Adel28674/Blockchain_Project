@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="423.0" prefWidth="900" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.blockchain.Controller.MarketController">
+    <children>
+
+        <BorderPane prefHeight="616.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns:fx="http://javafx.com/fxml/1">
+            <top>
+                <Label alignment="CENTER" prefHeight="28.0" prefWidth="928.0" style="-fx-background-color: #01579b;" text="Market" textFill="WHITE">
+                    <font>
+                        <Font name="Tahoma Bold" size="13.0" />
+                    </font>
+                </Label>
+            </top>
+            <left>
+                <VBox prefHeight="1000" prefWidth="109.0" spacing="10" style="-fx-background-color: #616161;" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
+                    <children>
+                        <Button fx:id="btnSidebarAccueil" mnemonicParsing="false" onAction="#onbtnSidebarAccueilClicked" prefHeight="30.0" prefWidth="109.0" style="-fx-background-color: #0277bd;" text="Acceuil" textFill="WHITE">
+                            <font>
+                                <Font name="Tahoma Bold" size="12.0" />
+                            </font>
+                        </Button>
+                        <Button fx:id="btnSidebarWalletManager" mnemonicParsing="false" onAction="#onbtnSidebarWalletManagerClicked" prefHeight="30.0" prefWidth="111.0" style="-fx-background-color: #0288d1;" text="Wallet Manager" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
+                        </Button>
+                        <Button fx:id="btnSidebaMarket" mnemonicParsing="false" onAction="#onbtnSidebaMarketClicked" prefHeight="30.0" prefWidth="109.0" style="-fx-background-color: #039be5;" text="Market" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
+                        </Button>
+                        <Button fx:id="btnSidebaProfile" mnemonicParsing="false" onAction="#onbtnProfileClicked" prefHeight="30.0" prefWidth="109.0" style="-fx-background-color: #03a9f4;" text="Profil" textFill="WHITE">
+                            <font>
+                                <Font name="Tahoma Bold" size="12.0" />
+                            </font>
+                        </Button>
+                    </children>
+                </VBox>
+            </left>
+          <center>
+             <VBox fx:id="container">
+               <children>
+                   <TilePane fx:id="tilePane" prefColumns="3" prefRows="2" prefTileHeight="100" prefTileWidth="100" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
+
+                   </TilePane>
+               </children></VBox>
+          </center>
+        </BorderPane>
+
+    </children>
+
+
+</AnchorPane>

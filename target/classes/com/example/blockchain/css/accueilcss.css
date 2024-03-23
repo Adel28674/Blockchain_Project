@@ -1,0 +1,13 @@
+.label {
+    -fx-layout-x: 6.0;
+    -fx-layout-y: 67.0;
+    -fx-pref-height: 18.0;
+    -fx-pref-width: 139.0;
+    -fx-text-fill: #e0e0e0;
+    -fx-font-family: "Tahoma";
+    -fx-font-size: 14.0;
+}
+
+.hbox-price-crypto{
+
+}
